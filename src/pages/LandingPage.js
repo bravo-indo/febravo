@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 function LandingPage() {
-    return <div>ini landing page</div>
+  return <div>ini landing page</div>;
 }
 
-export default LandingPage
+export default LandingPage;
