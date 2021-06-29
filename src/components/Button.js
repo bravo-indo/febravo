@@ -1,16 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Button({ label, isPrimary }) {
+function Button({ label, isPrimary, to }) {
   return (
     <div>
       {isPrimary ? (
-        <button className="rounded-md py-2 px-4 bg-purple-800 text-white border-2 border-purple-800 font-bold">
+        <Link
+          to={to}
+          className="rounded-md py-3 px-4 bg-purple-800 text-white border-2 border-purple-800 font-semibold"
+        >
           {label}
-        </button>
+        </Link>
       ) : (
-        <button className="rounded-md py-2 px-4 border-2 border-purple-800 text-purple-800 font-bold bg-white">
+        <Link
+          to={to}
+          className="rounded-md py-3 px-4 border-2 border-purple-800 text-purple-800 font-semibold bg-white"
+        >
           {label}
-        </button>
+        </Link>
       )}
     </div>
   );
