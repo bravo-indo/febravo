@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class Login extends React.Component {
+class RegisterEmployee extends React.Component {
   render() {
     return (
       <section className="auth bg-gray-100">
@@ -23,12 +23,30 @@ class Login extends React.Component {
               </p>
               <form className="flex flex-col space-y-8 text-gray-400">
                 <div>
+                  <label className="flex flex-row">Name</label>
+                  <input
+                    className="w-full px-2 py-3 rounded-md"
+                    type="text"
+                    name="name"
+                    placeholder="Masukan nama panjang"
+                  />
+                </div>
+                <div>
                   <label className="flex flex-row">Email</label>
                   <input
                     className="w-full px-2 py-3 rounded-md"
-                    type="email"
+                    type="text"
                     name="email"
-                    placeholder="Masukan Email"
+                    placeholder="Masukan nama email"
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-row">No handphone</label>
+                  <input
+                    className="w-full px-2 py-3 rounded-md"
+                    type="text"
+                    name="phone"
+                    placeholder="Masukan no handphone"
                   />
                 </div>
                 <div>
@@ -37,26 +55,25 @@ class Login extends React.Component {
                     className="w-full px-2 py-3 rounded-md"
                     type="password"
                     name="password"
-                    placeholder="Masukan kata sandi"
+                    placeholder="Masukan kata password"
                   />
                 </div>
-                <Link className="text-gray-700 text-right">
-                  Lupa kata sandi?
-                </Link>
+                <div>
+                  <label className="flex flex-row">Konfirmasi Kata Sandi</label>
+                  <input
+                    className="w-full px-2 py-3 rounded-md"
+                    type="text"
+                    name="passConfirm"
+                    placeholder="Masukan konfirmasi kata sandi"
+                  />
+                </div>
                 <button className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
-                  Masuk
+                  Daftar
                 </button>
                 <p className="text-center text-gray-700">
-                  Anda belum punya akun? Daftar di sini sebagai{" "}
-                  <Link
-                    to="/registerEmployee"
-                    className="text-yellow-500 hover:text-yellow-700"
-                  >
-                    Pekerja
-                  </Link>
-                  /
-                  <Link className="text-yellow-500 hover:text-yellow-700">
-                    Perekrut
+                  Anda sudah punya akun?{" "}
+                  <Link to="/login" className="text-yellow-500">
+                    Masuk di sini
                   </Link>
                 </p>
               </form>
@@ -68,4 +85,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default RegisterEmployee;
