@@ -7,6 +7,7 @@ import RegisterEmployee from "../pages/RegisterEmployee.js";
 import RegisterRecruiter from "../pages/RegisterRecruiter.js";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Profile from "../pages/Profile";
 
 function Routes() {
   return (
@@ -18,6 +19,9 @@ function Routes() {
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/login">
           <Login />
