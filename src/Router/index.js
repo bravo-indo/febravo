@@ -14,6 +14,7 @@ import ConfirmPass from "../pages/ConfirmPass.js";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Profile from "../pages/Profile";
+import Hire from "../pages/Hire";
 
 function Routes() {
   return (
@@ -28,6 +29,9 @@ function Routes() {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/hire">
+          <Hire />
         </Route>
         <Route path="/login">
           <Login />
