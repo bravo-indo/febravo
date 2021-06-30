@@ -15,6 +15,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Profile from "../pages/Profile";
 import Hire from "../pages/Hire";
+import EditProfile from "../pages/EditProfile";
 
 function Routes() {
   return (
@@ -27,11 +28,14 @@ function Routes() {
         <Route path="/home">
           <Home />
         </Route>
-        <Route path="/profile">
+        <Route exact path="/profile">
           <Profile />
         </Route>
         <Route path="/hire">
           <Hire />
+        </Route>
+        <Route path="/profile/edit">
+          <EditProfile />
         </Route>
         <Route path="/login">
           <Login />
