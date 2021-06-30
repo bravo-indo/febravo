@@ -5,6 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import Login from "../pages/Login";
 import RegisterEmployee from "../pages/RegisterEmployee.js";
 import RegisterRecruiter from "../pages/RegisterRecruiter.js";
+import ForgotPass from "../pages/ForgotPass.js";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -27,6 +28,9 @@ function Routes() {
         </Route>
         <Route path="/registerRecruiter">
           <RegisterRecruiter />
+        </Route>
+        <Route path="/forgotPass">
+          <ForgotPass />
         </Route>
       </Switch>
       <Footer />
