@@ -10,8 +10,8 @@ function Header() {
         <img src={Logo} alt="logo" />
       </Link>
       <div className="space-x-5 flex flex-row">
-        <Button label="Masuk" />
-        <Button label="Daftar" isPrimary />
+        <Button to="/login" label="Masuk" />
+        <Button to="/registerEmployee" label="Daftar" isPrimary />
       </div>
     </nav>
   );
