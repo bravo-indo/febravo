@@ -7,4 +7,16 @@ import dummyuser1 from "./dummyuser1.png";
 import dummyuser2 from "./dummyuser2.png";
 import dummyuser3 from "./dummyuser3.png";
 
-export { hero1, hero2, hero3, Logo, Logo2, dummyuser1, dummyuser2, dummyuser3 };
+import Lock from "./lock.png";
+
+export {
+  hero1,
+  hero2,
+  hero3,
+  Logo,
+  Logo2,
+  dummyuser1,
+  dummyuser2,
+  dummyuser3,
+  Lock,
+};
