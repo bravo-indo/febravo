@@ -2,8 +2,16 @@ import React from "react";
 import { GoLocation } from "react-icons/go";
 import { dummyuser1 } from "../assets";
 import "react-tabs/style/react-tabs.css";
+import { useDropzone } from "react-dropzone";
 
 const EditProfile = () => {
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+
+  const files = acceptedFiles.map((file) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -167,8 +175,8 @@ const EditProfile = () => {
                     name="deskripsiJob"
                   />
                 </div>
-                <button className="rounded-md w-full px-5 py-3 border border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
-                  Tabah Penglaman Kerja
+                <button className="rounded-md w-full px-5 py-3 border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
+                  Tambah Pengalaman Kerja
                 </button>
               </form>
             </div>
@@ -176,7 +184,7 @@ const EditProfile = () => {
           <div className="bg-white rounded-lg ">
             <div className="px-10 py-5 border-b-2 border-gray-300">
               <h3 className="font-semibold text-2xl text-gray-700">
-                Portfolio
+                Portofolio
               </h3>
             </div>
             <div className="px-10 py-5">
@@ -232,10 +240,27 @@ const EditProfile = () => {
                   <label className="font-semibold text-gray-500">
                     Upload Gambar
                   </label>
-                  <div></div>
+
+                  <section className="container">
+                    <div
+                      {...getRootProps({
+                        className:
+                          "dropzone, flex flex-col items-center justify-center border-2 h-40 border-dashed",
+                      })}
+                    >
+                      <input {...getInputProps()} />
+                      <p>
+                        Drag 'n' drop some files here, or click to select files
+                      </p>
+                    </div>
+                    <aside>
+                      <h4>Files</h4>
+                      <ul>{files}</ul>
+                    </aside>
+                  </section>
                 </div>
                 <hr className=" border border-gray-300" />
-                <button className="rounded-md w-full px-5 py-3 border border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
+                <button className="rounded-md w-full px-5 py-3  border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
                   Tambah Portfolio
                 </button>
               </form>
