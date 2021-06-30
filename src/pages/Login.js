@@ -7,7 +7,7 @@ class Login extends React.Component {
       <section className="auth bg-gray-100">
         <div className="container mx-auto pt-10">
           <div className="grid grid-cols-2">
-            <div className="side-left p-10 w-full text-white">
+            <div className="side-left p-10 w-full h-auto text-white">
               <p className="font-bold">
                 <Link>Bravo</Link>
               </p>
@@ -55,7 +55,10 @@ class Login extends React.Component {
                     Pekerja
                   </Link>
                   /
-                  <Link className="text-yellow-500 hover:text-yellow-700">
+                  <Link
+                    to="/registerRecruiter"
+                    className="text-yellow-500 hover:text-yellow-700"
+                  >
                     Perekrut
                   </Link>
                 </p>

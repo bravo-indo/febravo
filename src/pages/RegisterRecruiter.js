@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class RegisterEmployee extends React.Component {
+class RegisterRecruiter extends React.Component {
   render() {
     return (
       <section className="auth bg-gray-100">
         <div className="container mx-auto pt-10">
           <div className="grid grid-cols-2">
-            <div className="side-left p-10 w-full h-auto  text-white">
+            <div className="side-left p-10 w-full text-white">
               <p className="font-bold">
                 <Link>Bravo</Link>
               </p>
@@ -38,6 +38,24 @@ class RegisterEmployee extends React.Component {
                     type="text"
                     name="email"
                     placeholder="Masukan nama email"
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-row">Perusahaan</label>
+                  <input
+                    className="w-full px-2 py-3 rounded-md"
+                    type="text"
+                    name="perusahaan"
+                    placeholder="Masukan nama perusahaan"
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-row">Jabatan</label>
+                  <input
+                    className="w-full px-2 py-3 rounded-md"
+                    type="text"
+                    name="jabatan"
+                    placeholder="Posisi di perusahaan Anda"
                   />
                 </div>
                 <div>
@@ -85,4 +103,4 @@ class RegisterEmployee extends React.Component {
   }
 }
 
-export default RegisterEmployee;
+export default RegisterRecruiter;
