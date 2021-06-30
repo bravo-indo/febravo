@@ -40,7 +40,7 @@ class Login extends React.Component {
                     placeholder="Masukan kata sandi"
                   />
                 </div>
-                <Link className="text-gray-700 text-right">
+                <Link to="/forgotPass" className="text-gray-700 text-right">
                   Lupa kata sandi?
                 </Link>
                 <button className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
