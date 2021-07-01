@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";

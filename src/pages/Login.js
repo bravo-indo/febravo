@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+/*eslint-disable*/
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   render() {
@@ -47,7 +48,8 @@ class Login extends React.Component {
                   Masuk
                 </button>
                 <p className="text-center text-gray-700">
-                  Anda belum punya akun? Daftar di sini sebagai{" "}
+                  Anda belum punya akun? Daftar di sini sebagai
+                  {' '}
                   <Link
                     to="/registerEmployee"
                     className="text-yellow-500 hover:text-yellow-700"

@@ -1,8 +1,9 @@
-import "./App.css"
-import Routes from "./Router"
+/*eslint-disable*/
+import './App.css';
+import Routes from './Router';
 
 function App() {
-    return <Routes />
+  return <Routes />;
 }
 
-export default App
+export default App;
