@@ -19,8 +19,12 @@ constructor(props){
   onSubmit = (e) => {
     e.preventDefault();
     console.log(this.state)
-    this.props.authRegister(this.state.name, this.state.email, this.state.phone,
-      this.state.password, this.state.passConfirm)
+    this.props.authRegister(
+      this.state.name,
+      this.state.email,
+      this.state.phone,
+      this.state.password,
+      this.state.passConfirm)
   }
   render() {
     return (

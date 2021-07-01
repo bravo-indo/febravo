@@ -3,7 +3,7 @@ import { Logo2 } from '../assets';
 
 function Footer() {
   return (
-    <footer className="bg-purple-800 px-32 py-10 space-y-10">
+    <footer className="bg-purple-800 invisible md:visible md:px-32 md:py-10 space-y-10">
       <img src={Logo2} alt="logo" />
       <p className="text-white w-80">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
