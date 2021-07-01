@@ -17,6 +17,7 @@ import Profile from "../pages/Profile";
 import Hire from "../pages/Hire";
 import EditProfile from "../pages/EditProfile";
 import ProfileCompany from "../pages/ProfileCompany";
+import EditProfileCompany from "../pages/EditProfileCompany";
 
 function Routes() {
   return (
@@ -37,6 +38,9 @@ function Routes() {
         </Route>
         <Route exact path="/profile/company">
           <ProfileCompany />
+        </Route>
+        <Route path="/profile/company/edit">
+          <EditProfileCompany />
         </Route>
         <Route path="/hire">
           <Hire />
