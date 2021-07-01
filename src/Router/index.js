@@ -29,7 +29,7 @@ function Routes() {
         <Route path="/home">
           <Home />
         </Route>
-        <Route exact path="/profile">
+        <Route exact path="/profile/:id">
           <Profile />
         </Route>
         <Route path="/profile/edit">

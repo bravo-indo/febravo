@@ -20,16 +20,16 @@ class Login extends React.Component {
     return (
       <section className="auth bg-gray-100">
         <div className="container mx-auto pt-10">
-          <div className="grid grid-cols-2">
-            <div className="side-left p-10 w-full h-auto text-white">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="md:visible side-left px-16 md:p-10 w-full h-10 md:h-auto text-white">
               <p className="font-bold">
                 <Link>Bravo</Link>
               </p>
-              <h1 className="pt-60 pb-72 px-10 text-4xl font-bold">
+              <h1 className="md:pt-60 pb-72 md:px-10 text-4xl font-bold">
                 Temukan developer berbakat & terbaik di berbagai bidang keahlian
               </h1>
             </div>
-            <div className="py-24 p-10">
+            <div className="py-24 px-16 md:p-10">
               <h1 className="text-4xl font-bold">Halo Pewpeople</h1>
               <p className="py-7">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
