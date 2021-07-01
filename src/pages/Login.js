@@ -1,8 +1,21 @@
 /*eslint-disable*/
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import {authLogin} from "../redux/actions/auth"
 
 class Login extends React.Component {
+  state = {
+    email :"",
+    password: ""
+  }
+
+  onLogin = (event) =>{
+    event.preventDefault()
+    const {email, password} = this.state
+    this.props.authLogin( email, password)
+  }
+
   render() {
     return (
       <section className="auth bg-gray-100">
@@ -22,10 +35,11 @@ class Login extends React.Component {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                 euismod ipsum et dui rhoncus auctor.
               </p>
-              <form className="flex flex-col space-y-8 text-gray-400">
+              <form onSubmit={this.onLogin} className="flex flex-col space-y-8 text-gray-400">
                 <div>
                   <label className="flex flex-row">Email</label>
                   <input
+                    onChange={(event)=>this.setState({email: event.target.value})}
                     className="w-full px-2 py-3 rounded-md"
                     type="email"
                     name="email"
@@ -35,6 +49,7 @@ class Login extends React.Component {
                 <div>
                   <label className="flex flex-row">Kata Sandi</label>
                   <input
+                    onChange={(event)=>this.setState({password: event.target.value})}
                     className="w-full px-2 py-3 rounded-md"
                     type="password"
                     name="password"
@@ -73,4 +88,6 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = {authLogin}
+
+export default connect(null, mapDispatchToProps)(Login);
