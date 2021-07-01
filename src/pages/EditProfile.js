@@ -1,15 +1,22 @@
-import React from "react";
-import { GoLocation } from "react-icons/go";
-import { dummyuser1 } from "../assets";
-import "react-tabs/style/react-tabs.css";
-import { useDropzone } from "react-dropzone";
+/*eslint-disable*/
+import React from 'react';
+import { GoLocation } from 'react-icons/go';
+import { dummyuser1 } from '../assets';
+import 'react-tabs/style/react-tabs.css';
+import { useDropzone } from 'react-dropzone';
 
 const EditProfile = () => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
 
   const files = acceptedFiles.map((file) => (
     <li key={file.path}>
-      {file.path} - {file.size} bytes
+      {file.path}
+      {' '}
+      -
+      {' '}
+      {file.size}
+      {' '}
+      bytes
     </li>
   ));
   return (
@@ -245,7 +252,7 @@ const EditProfile = () => {
                     <div
                       {...getRootProps({
                         className:
-                          "dropzone, flex flex-col items-center justify-center border-2 h-40 border-dashed",
+                          'dropzone, flex flex-col items-center justify-center border-2 h-40 border-dashed',
                       })}
                     >
                       <input {...getInputProps()} />

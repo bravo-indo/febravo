@@ -1,6 +1,7 @@
-import React from "react";
-import { GoLocation } from "react-icons/go";
-import { dummyuser1 } from "../assets";
+/*eslint-disable*/
+import React from 'react';
+import { GoLocation } from 'react-icons/go';
+import { dummyuser1 } from '../assets';
 
 function Hire() {
   return (

@@ -1,23 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "../pages/Home";
-import LandingPage from "../pages/LandingPage";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from '../pages/Home';
+import LandingPage from '../pages/LandingPage';
 
-import Login from "../pages/Login";
-import RegisterEmployee from "../pages/RegisterEmployee.js";
-import RegisterRecruiter from "../pages/RegisterRecruiter.js";
-import ForgotPass from "../pages/ForgotPass.js";
-import NotifResetPass from "../pages/NotifResetPass.js";
-import ResetPass from "../pages/ResetPass.js";
-import ConfirmPass from "../pages/ConfirmPass.js";
-
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Profile from "../pages/Profile";
-import Hire from "../pages/Hire";
-import EditProfile from "../pages/EditProfile";
-import ProfileCompany from "../pages/ProfileCompany";
-import EditProfileCompany from "../pages/EditProfileCompany";
+import Login from '../pages/Login';
+import RegisterEmployee from '../pages/RegisterEmployee';
+import RegisterRecruiter from '../pages/RegisterRecruiter';
+import ForgotPass from '../pages/ForgotPass';
+import NotifResetPass from '../pages/NotifResetPass';
+import ResetPass from '../pages/ResetPass';
+import ConfirmPass from '../pages/ConfirmPass';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Profile from '../pages/Profile';
+import Hire from '../pages/Hire';
+import EditProfile from '../pages/EditProfile';
+import ProfileCompany from '../pages/ProfileCompany';
+import EditProfileCompany from '../pages/EditProfileCompany';
 
 function Routes() {
   return (
@@ -48,10 +47,10 @@ function Routes() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/registerEmployee">
+        <Route exact path="/register">
           <RegisterEmployee />
         </Route>
-        <Route path="/registerRecruiter">
+        <Route path="/register/recruiter">
           <RegisterRecruiter />
         </Route>
         <Route path="/forgotPass">

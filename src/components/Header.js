@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Logo } from "../assets";
-import Button from "./Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Logo } from '../assets';
+import Button from './Button';
 
 function Header() {
   return (
@@ -11,7 +11,7 @@ function Header() {
       </Link>
       <div className="space-x-5 flex flex-row">
         <Button to="/login" label="Masuk" />
-        <Button to="/registerEmployee" label="Daftar" isPrimary />
+        <Button to="/register" label="Daftar" isPrimary />
       </div>
     </nav>
   );

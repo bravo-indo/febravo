@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
