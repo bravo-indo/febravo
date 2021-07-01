@@ -1,5 +1,6 @@
 const initialState = {
   messageRegister: '',
+  loading: false,
 };
 
 const message = (state = initialState, action) => {
@@ -13,6 +14,11 @@ const message = (state = initialState, action) => {
       return {
         ...state,
         messageRegister: action.payload,
+      };
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: action.payload,
       };
     case 'SET_CLEAR_MESSAGE':
       return {

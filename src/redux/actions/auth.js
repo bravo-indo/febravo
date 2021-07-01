@@ -3,6 +3,18 @@ import http from '../../helpers/http';
 import Swal from 'sweetalert2'
 const { REACT_APP_BACKEND_URL: URL } = process.env;
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 const authRegister = (
   name,
   email,
@@ -11,11 +23,7 @@ const authRegister = (
   confirmationPassword,
 ) => async (dispatch) => {
   const form = new URLSearchParams();
-  console.log('massuuk',name,
-    email,
-    phoneNumber,
-    password,
-    confirmationPassword,)
+
   form.append('name', name);
   form.append('email', email);
   form.append('phone_number', phoneNumber);
@@ -31,12 +39,18 @@ const authRegister = (
     });
     dispatch({
       type: 'SET_AUTH_REGISTER_SUCCESS',
-      payload: Swal.fire('Register Successfully')
+      payload: Toast.fire({
+        icon: 'success',
+        title: 'Register successfully'
+      })
     });
   } catch (error) {
     dispatch({
       type: 'SET_AUTH_REGISTER_FAILED',
-      payload: Swal.fire(error.response.data.message)
+      payload: Toast.fire({
+        icon: 'error',
+        title: error.response.data.message
+      })
     })
   }
 };
