@@ -61,4 +61,8 @@ const authLogin = (email, password) => {
   };
 };
 
-export { authRegister, authLogin };
+const authLogout = () =>({
+  type: "AUTH_LOGOUT"
+})
+
+export { authRegister, authLogin, authLogout };
