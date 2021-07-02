@@ -11,6 +11,7 @@ import porto2 from './porto2.png';
 import porto3 from './porto3.png';
 import toko from './tokopedia.png';
 import Lock from './lock.png';
+import defaultuser from './defaultuser.png';
 
 export {
   toko,
@@ -26,4 +27,5 @@ export {
   dummyuser2,
   dummyuser3,
   Lock,
+  defaultuser,
 };

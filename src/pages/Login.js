@@ -14,8 +14,9 @@ class Login extends React.Component {
     event.preventDefault()
     const {email, password} = this.state
     this.props.authLogin( email, password)
-
   }
+
+
 
   render() {
     return (
@@ -93,6 +94,9 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 const mapDispatchToProps = {authLogin}
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

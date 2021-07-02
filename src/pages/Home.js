@@ -15,24 +15,19 @@ function Home({auth,getProfileData}) {
   },[])
 
   return (
-    <main className="container mx-auto bg-red-500 ">
-      <section className="bg-purple-800 py-5">
+    <main>
+      <section className="bg-purple-800 py-5 px-32">
         <p className="px-5 text-white text-2xl font-semibold">Top Jobs</p>
       </section>
-      <section className="bg-gray-100 py-5">
-        <div className="flex flex-row md:space-y-5 items-center space-x-5 bg-white px-4 py-1 rounded-lg">
-          <div className="flex flex-row">
+      <section className="bg-gray-100 md:px-32 py-5">
+        <div className="flex flex-row  items-center space-x-5 bg-white md:px-4 py-1 rounded-lg">
             <input
             type="text"
             placeholder="Search for any skill"
-            className="p-4 flex-1 focus:outline-none"
+            className="p-4 flex-1 w-96 focus:outline-none"
             />
-            <button>
               <BsSearch size={25} />
-            </button>
-          </div>
-          <div className="flex flex-row">
-            <select className="border-l-2 border-gray-400 focus:outline-none">
+            <select className="focus:outline-none">
               <option value="name">Sortir berdasarkan nama</option>
               <option value="skill">Sortir berdasarkan Skill</option>
               <option value="location">Sortir berdasarkan Lokasi</option>
@@ -40,10 +35,9 @@ function Home({auth,getProfileData}) {
               <option value="fulltime">Sortir berdasarkan fulltime</option>
             </select>
             <Button label="Search" isPrimary />
-          </div>
         </div>
       </section>
-      <section className="bg-gray-100">
+      <section className="bg-gray-100 md:px-32">
         <div className="rounded-xl bg-white">
           <UserCard
             img={dummyuser1}

@@ -1,10 +1,17 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import { GoLocation } from "react-icons/go";
-import { dummyuser1 } from "../assets";
+import { defaultuser, dummyuser1 } from "../assets";
 import "react-tabs/style/react-tabs.css";
+import { connect } from "react-redux"
+import {getProfileData} from '../redux/actions/profile'
 
-const EditProfileCompany = () => {
+const EditProfileCompany = ({auth, getProfileData, profile}) => {
+
+  useEffect(() => {
+    getProfileData(auth.token)
+  },[])
+
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -12,13 +19,21 @@ const EditProfileCompany = () => {
         <div className="h-auto w-80 -mt-64 space-y-4">
           <div className="bg-white px-8 py-8 space-y-4 rounded-lg">
             <div className="flex flex-col items-center">
-              <img src={dummyuser1} alt="user" className="w-32 h-32" />
+            {profile.data.images !== null ? <img
+            src={dummyuser1}
+            alt="user"
+            className="-mt-16 w-32 h-32 rounded-full object-cover"
+          /> : <img
+            src={defaultuser}
+            alt="user"
+            className="-mt-16 w-32 h-32 rounded-full bg-white object-cover"
+          />}
             </div>
-            <h4 className="text-2xl font-semibold">PT Madjoe Djaja</h4>
-            <h4>Human Resource Department</h4>
-            <div className="flex flex-row items-center space-x-1">
+            <h4 className="text-2xl text-center font-semibold">{profile.data.company_name}</h4>
+            <h4 className='text-center'>{profile.data.position}</h4>
+            <div className="flex flex-row items-center space-x-1 justify-center">
               <GoLocation color="gray" />
-              <p className="text-gray-400">Purwokerto, Jawa Tengah</p>
+              <p className="text-gray-400 ">{profile.data.address}</p>
             </div>
           </div>
           <button className="bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
@@ -118,5 +133,10 @@ const EditProfileCompany = () => {
     </main>
   );
 };
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  auth: state.auth
+})
 
-export default EditProfileCompany;
+const mapDisPatchToProps = { getProfileData }
+export default connect(mapStateToProps, mapDisPatchToProps)(EditProfileCompany);
