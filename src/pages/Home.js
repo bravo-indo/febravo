@@ -15,11 +15,11 @@ function Home({auth,getProfileData}) {
   },[])
 
   return (
-    <main>
-      <section className="px-32 bg-purple-800 py-5">
+    <main className="container mx-auto bg-red-500 ">
+      <section className="bg-purple-800 py-5">
         <p className="text-white text-2xl font-semibold">Top Jobs</p>
       </section>
-      <section className="bg-gray-100 px-32 py-5">
+      <section className="bg-gray-100 py-5">
         <div className="flex flex-row items-center space-x-5 bg-white px-4 py-1 rounded-lg">
           <input
             type="text"
@@ -39,7 +39,7 @@ function Home({auth,getProfileData}) {
           <Button label="Search" isPrimary />
         </div>
       </section>
-      <section className="bg-gray-100 px-32">
+      <section className="bg-gray-100">
         <div className="rounded-xl bg-white">
           <UserCard
             img={dummyuser1}
