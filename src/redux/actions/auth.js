@@ -182,4 +182,9 @@ const forgotPass = (email) => {
   };
 };
 
+const authLogout = () =>({
+  type: "AUTH_LOGOUT"
+})
+
+
 export { authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass };

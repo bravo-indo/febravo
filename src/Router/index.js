@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from '../pages/Home';
 import LandingPage from '../pages/LandingPage';
+// import PrivateRoute from '../components/PrivateRoute';
 
 import Login from '../pages/Login';
 import RegisterEmployee from '../pages/RegisterEmployee';
@@ -30,6 +31,9 @@ function Routes() {
         <Route path="/home">
           <Home />
         </Route>
+        {/* <PrivateRoute exact path="/profile">
+          <Profile />
+        </PrivateRoute> */}
         <Route exact path="/profile/:id">
           <Profile />
         </Route>
