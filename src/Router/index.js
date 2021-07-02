@@ -17,6 +17,7 @@ import Hire from '../pages/Hire';
 import EditProfile from '../pages/EditProfile';
 import ProfileCompany from '../pages/ProfileCompany';
 import EditProfileCompany from '../pages/EditProfileCompany';
+import LoginEmployee from '../pages/LoginEmployee';
 
 function Routes() {
   return (
@@ -44,8 +45,11 @@ function Routes() {
         <Route path="/hire">
           <Hire />
         </Route>
-        <Route path="/login">
+        <Route exact path="/login">
           <Login />
+        </Route>
+        <Route path="/login/employee">
+          <LoginEmployee />
         </Route>
         <Route exact path="/register">
           <RegisterEmployee />
