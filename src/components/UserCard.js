@@ -5,7 +5,7 @@ import { GoLocation } from 'react-icons/go';
 import Button from './Button';
 
 function UserCard({
-  img, name, role, location, skill,
+  img, name, role, location, skill, to
 }) {
   return (
     <div className=" flex flex-row space-x-8 px-5 py-10 items-center border-b-2 border-gray-200">
@@ -24,7 +24,7 @@ function UserCard({
           </p>
         </div>
       </div>
-      <Button label="Lihat Profile" isPrimary />
+      <Button to={to} label="Lihat Profile" isPrimary />
     </div>
   );
 }

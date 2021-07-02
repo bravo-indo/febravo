@@ -1,12 +1,19 @@
 /*eslint-disable*/
 import React from "react";
+import { useEffect } from "react"
 import { BsSearch } from "react-icons/bs";
+import { connect } from "react-redux"
 
 import { dummyuser1 } from "../assets";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
+import {getProfileData} from '../redux/actions/profile'
+function Home({auth,getProfileData}) {
+  useEffect(() => {
+    console.log(auth.token)
+    getProfileData(auth.token)
+  },[])
 
-function Home() {
   return (
     <main>
       <section className="px-32 bg-purple-800 py-5">
@@ -40,6 +47,7 @@ function Home() {
             location="Bandung"
             role="Web Developer"
             skill="PHP"
+            to='/user/:id'
           />
           <UserCard
             img={dummyuser1}
@@ -47,6 +55,7 @@ function Home() {
             location="Bandung"
             role="Web Developer"
             skill="PHP"
+            to='/user/:id'
           />
           <UserCard
             img={dummyuser1}
@@ -54,6 +63,7 @@ function Home() {
             location="Bandung"
             role="Web Developer"
             skill="PHP"
+            to='/user/:id'
           />
         </div>
       </section>
@@ -89,4 +99,10 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+
+const mapDisPatchToProps = { getProfileData };
+export default connect(mapStateToProps, mapDisPatchToProps)(Home) ;
