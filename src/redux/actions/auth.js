@@ -118,14 +118,37 @@ const authLogin = (email, password) => {
       const { data } = await http().post(`${URL}/auth/login/recruiter`, form.toString());
       dispatch({
         type: "AUTH_LOGIN",
-        payload: data.message.token
+        payload: data.succsess.token
       });
     } catch (err) {
       dispatch({
         type: "AUTH_LOGIN_FAILED",
         payload: Toast.fire({
           icon: 'error',
-          title: err.response.data.succsess
+          title: 'username or password false'
+        })
+      }) //error from axios
+    }
+  };
+};
+
+const authLoginEmployee = (email, password) => {
+  return async (dispatch) => {
+    const form = new URLSearchParams();
+    form.append("email", email);
+    form.append("password", password);
+    try {
+      const { data } = await http().post(`${URL}/auth/login/worker`, form.toString());
+      dispatch({
+        type: "AUTH_LOGIN",
+        payload: data.results.token
+      });
+    } catch (err) {
+      dispatch({
+        type: "AUTH_LOGIN_FAILED",
+        payload: Toast.fire({
+          icon: 'error',
+          title: 'username or password false'
         })
       }) //error from axios
     }
@@ -159,4 +182,4 @@ const forgotPass = (email) => {
   };
 };
 
-export { authRegister,authRegisterRecruiter, authLogin, forgotPass };
+export { authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass };

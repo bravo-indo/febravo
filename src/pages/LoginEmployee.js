@@ -2,9 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import {authLogin} from "../redux/actions/auth"
+import {authLoginEmployee} from "../redux/actions/auth"
 
-class Login extends React.Component {
+class LoginEmployee extends React.Component {
   state = {
     email :"",
     password: ""
@@ -13,7 +13,7 @@ class Login extends React.Component {
   onLogin = (event) =>{
     event.preventDefault()
     const {email, password} = this.state
-    this.props.authLogin( email, password)
+    this.props.authLoginEmployee( email, password)
   }
 
   render() {
@@ -62,10 +62,6 @@ class Login extends React.Component {
                 <button className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
                   Masuk
                 </button>
-                <p className='text-center'>atau</p>
-                <Link to='/login/employee' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-center text-white">
-                  Login sebagai pekerja
-                </Link>
                 <p className="text-center text-gray-700">
                   Anda belum punya akun? Daftar di sini sebagai
                   {' '}
@@ -92,6 +88,6 @@ class Login extends React.Component {
   }
 }
 
-const mapDispatchToProps = {authLogin}
+const mapDispatchToProps = {authLoginEmployee}
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(LoginEmployee);
