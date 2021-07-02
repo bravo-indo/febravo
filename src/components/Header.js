@@ -23,7 +23,7 @@ function Header({ auth, authLogout, profile }) {
           <IoIosNotificationsOutline size={24} color='gray' />
           <Link to={type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
             {profile.data.images !== null ? <img
-            src={dummyuser1}
+            src={profile.data.images}
             alt="user"
             className="w-8 h-8 rounded-full object-cover"
           /> : <img

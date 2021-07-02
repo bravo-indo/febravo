@@ -12,7 +12,6 @@ import {getProfileData} from '../redux/actions/profile'
 
 function ProfileCompany({auth, getProfileData, profile}) {
   useEffect(() => {
-
     getProfileData(auth.token)
   },[])
 
@@ -27,7 +26,7 @@ function ProfileCompany({auth, getProfileData, profile}) {
         </div>
         <div className="flex flex-col items-center space-y-3 bg-white rounded-b-lg">
           {profile.data.images !== null ? <img
-            src={dummyuser1}
+            src={profile.data.images}
             alt="user"
             className="-mt-16 w-32 h-32 rounded-full object-cover"
           /> : <img
@@ -36,7 +35,7 @@ function ProfileCompany({auth, getProfileData, profile}) {
             className="-mt-16 w-32 h-32 rounded-full bg-white object-cover"
           />}
           <h3 className="text-xl font-semibold">{profile.data.company_name}</h3>
-          <h3>Financial</h3>
+          <h3>{profile.data.position}</h3>
           <div className="flex flex-row items-center space-x-1">
             <GoLocation color="gray" />
             <p className="text-gray-400">{profile.data.address}</p>
@@ -52,7 +51,7 @@ function ProfileCompany({auth, getProfileData, profile}) {
           <div className="space-y-4 pb-20">
             <div className="flex flex-row items-center space-x-3 pt-8">
               <AiOutlineMail size={25} color="gray" />
-              <p className="text-gray-400">Louistommo@gmail.com</p>
+              <p className="text-gray-400">{profile.data.email}</p>
             </div>
             <div className="flex flex-row items-center space-x-3">
               <FaInstagram size={25} color="gray" />
@@ -60,7 +59,7 @@ function ProfileCompany({auth, getProfileData, profile}) {
             </div>
             <div className="flex flex-row items-center space-x-3">
               <FiPhone size={25} color="gray" />
-              <p className="text-gray-400">@Louistommo</p>
+              <p className="text-gray-400">{profile.data.phone_number}</p>
             </div>
             <div className="flex flex-row items-center space-x-3 pb-10">
               <FiLinkedin size={25} color="gray" />

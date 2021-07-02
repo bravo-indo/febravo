@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
@@ -9,8 +9,16 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import {getProfileData} from '../redux/actions/profile'
 
-function UserProfile() {
+
+function UserProfile({auth, getProfileData, profile}) {
+
+  useEffect(() => {
+    getProfileData(auth.token)
+  },[])
+
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -19,11 +27,11 @@ function UserProfile() {
           <div className="flex flex-col items-center">
             <img src={dummyuser1} alt="user" className="w-32 h-32" />
           </div>
-          <h4 className="text-2xl font-semibold">Louis Tomlinson</h4>
-          <h4>Web Developer</h4>
+          <h4 className="text-2xl font-semibold">{profile.data.name}</h4>
+          <h4>{profile.data.job_desk}</h4>
           <div className="flex flex-row items-center space-x-1">
             <GoLocation color="gray" />
-            <p className="text-gray-400">Purwokerto, Jawa Tengah</p>
+            <p className="text-gray-400">{profile.data.address}</p>
           </div>
           <h4 className="text-gray-400">Freelancer</h4>
           <p className="text-gray-400 text-sm">
@@ -147,4 +155,11 @@ function UserProfile() {
   );
 }
 
-export default UserProfile;
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  auth: state.auth
+})
+
+const mapDisPatchToProps = { getProfileData }
+
+export default connect(mapStateToProps, mapDisPatchToProps)( UserProfile);
