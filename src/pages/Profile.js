@@ -9,8 +9,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
 
-function Profile() {
+function Profile({profile}) {
+  const {type_users} = profile.data
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -31,9 +33,9 @@ function Profile() {
             erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu
             lacus fringilla, vestibulum risus at.
           </p>
-          <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
+          {type_users === 'recruiter' && <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Hire
-          </Link>
+          </Link> }
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
             <li className="bg-yellow-400 text-white text-center rounded-md">
@@ -146,4 +148,10 @@ function Profile() {
   );
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile
+});
+
+
+export default connect(mapStateToProps, null)(Profile);
