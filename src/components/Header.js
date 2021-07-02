@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { dummyuser1, Logo } from '../assets';
+import { defaultuser, dummyuser1, Logo } from '../assets';
 import { authLogout } from '../redux/actions/auth';
 import Button from './Button';
 import {FiMail} from 'react-icons/fi'
@@ -22,7 +22,15 @@ function Header({ auth, authLogout, profile }) {
           <FiMail size={24} color='gray' />
           <IoIosNotificationsOutline size={24} color='gray' />
           <Link to={type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
-            <img src={dummyuser1} alt="user" className='w-8 h-8 rounded-full' />
+            {profile.data.images !== null ? <img
+            src={dummyuser1}
+            alt="user"
+            className="w-8 h-8 rounded-full object-cover"
+          /> : <img
+            src={defaultuser}
+            alt="user"
+            className="w-8 h-8 rounded-full bg-white object-cover"
+          />}
           </Link>
           <Button label='Logout' onClick={authLogout}/>
         </div>

@@ -33,7 +33,8 @@ function Profile({profile}) {
             erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu
             lacus fringilla, vestibulum risus at.
           </p>
-          {type_users === 'recruiter' && <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
+          {type_users === 'recruiter' &&
+          <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Hire
           </Link> }
           <p className="text-xl font-semibold pt-6">Skill</p>
