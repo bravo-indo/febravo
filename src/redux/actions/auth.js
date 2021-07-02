@@ -187,4 +187,4 @@ const authLogout = () =>({
 })
 
 
-export { authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass };
+export { authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass, authLogout };
