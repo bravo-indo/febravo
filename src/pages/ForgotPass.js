@@ -1,9 +1,19 @@
 /*eslint-disable*/
 import React from "react";
+import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import SideAuth from "../components/SideAuth";
+import {forgotPass} from '../redux/actions/auth'
 
 class ForgotPass extends React.Component {
+  state = {
+    email: ''
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.props.forgotPass(this.state.email)
+  }
   render() {
     return (
       <section className="auth bg-gray-100">
@@ -16,21 +26,23 @@ class ForgotPass extends React.Component {
                 Enter your user account's verified email address and we will
                 send you a password reset link.
               </p>
-              <form className="flex flex-col space-y-8 text-gray-400">
+              <form onSubmit={this.onSubmit} className="flex flex-col space-y-8 text-gray-400">
                 <div>
                   <label className="flex flex-row">Email</label>
                   <input
                     className="w-full px-2 py-3 rounded-md"
                     type="email"
                     name="email"
+                    value={this.state.email}
+                    onChange={(e) => this.setState({email: e.target.value})}
                     placeholder="Masukan Email"
                   />
                 </div>
-                <Link to="notifResetPass">
-                  <button className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
+
+                  <button type='submit' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
                     Send Password reset email
                   </button>
-                </Link>
+
               </form>
             </div>
           </div>
@@ -40,4 +52,9 @@ class ForgotPass extends React.Component {
   }
 }
 
-export default ForgotPass;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+const mapDispatchToProps = { forgotPass };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPass);

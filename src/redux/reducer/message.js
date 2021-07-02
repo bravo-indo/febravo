@@ -1,5 +1,8 @@
 const initialState = {
   messageRegister: '',
+  loading: false,
+  toLogin: '',
+  forgotPass: '',
 };
 
 const message = (state = initialState, action) => {
@@ -14,11 +17,27 @@ const message = (state = initialState, action) => {
         ...state,
         messageRegister: action.payload,
       };
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case 'SET_TO_LOGIN':
+      return {
+        ...state,
+        toLogin: action.payload,
+      };
     case 'SET_CLEAR_MESSAGE':
       return {
         ...state,
         message: '',
       };
+    case 'FORGOT_PASSWORD_FAILED': {
+      return {
+        ...state,
+        forgotPass: action.payload,
+      };
+    }
     default:
       return {
         ...state,
