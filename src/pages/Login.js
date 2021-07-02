@@ -17,7 +17,6 @@ class Login extends React.Component {
   }
 
 
-
   render() {
     return (
       <section className="auth bg-gray-100">
@@ -65,9 +64,9 @@ class Login extends React.Component {
                   Masuk
                 </button>
                 <p className='text-center'>atau</p>
-                <Link to='/login/employee' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-center text-white">
+                {/* <Link to='/login/employee' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-center text-white">
                   Login sebagai pekerja
-                </Link>
+                </Link> */}
                 <p className="text-center text-gray-700">
                   Anda belum punya akun? Daftar di sini sebagai
                   {' '}
