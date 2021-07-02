@@ -11,7 +11,7 @@ import Button from './Button';
 
 function Header({ auth }) {
   return (
-    <nav className="flex flex-row justify-between items-center px-32 py-5 sticky top-0 bg-white">
+    <nav className="flex flex-row justify-between items-center px-5 md:px-32 py-5 sticky top-0 bg-white">
       <Link to="/">
         <img src={Logo} alt="logo" />
       </Link>
