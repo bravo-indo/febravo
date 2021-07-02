@@ -17,8 +17,8 @@ import {
 
 function LandingPage() {
   return (
-    <main className="mt-10">
-      <section className="bg-white px-32">
+    <main className="container mt-10">
+      <section className="bg-white px-5 lg:px-32">
         <section className="flex flex-row justify-between items-center space-x-20 mb-10">
           <div className="space-y-5">
             <h3 className="font-semibold text-4xl">
@@ -32,7 +32,7 @@ function LandingPage() {
             </p>
             <Button label="Mulai dari sekarang" isPrimary />
           </div>
-          <img src={hero1} alt="hero" />
+          <img className="hidden md:inline-block md:h-40" src={hero1} alt="hero" />
         </section>
         <section className="flex flex-row justify-between items-center space-x-20 mb-10">
           <img src={hero2} alt="hero" />
