@@ -28,6 +28,12 @@ const auth = (state = initialState, action) => {
         message: action.payload,
       };
     }
+    case 'AUTH_LOGOUT': {
+      return {
+        ...state,
+        token: null,
+      };
+    }
     default:
       return {
         ...state,
