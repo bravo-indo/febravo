@@ -10,7 +10,7 @@ import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
 import { Link } from "react-router-dom"
 
-function Profile() {
+function UserProfile() {
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -31,8 +31,9 @@ function Profile() {
             erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu
             lacus fringilla, vestibulum risus at.
           </p>
-          <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
-            Hire
+
+          <Link to='/profile/edit' className="justify-center flex flex-row bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
+            Edit Profile
           </Link>
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
@@ -146,4 +147,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default UserProfile;
