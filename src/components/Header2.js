@@ -5,11 +5,7 @@ import { Logo } from '../assets';
 import { authLogout } from '../redux/actions/auth';
 import Button from './Button';
 
-// const logOut = () => {
-//   this.props.authLogout();
-// };
-
-function Header({ auth }) {
+lass Header({ auth }) {
   return (
     <nav className="flex flex-row justify-between items-center px-32 py-5 sticky top-0 bg-white">
       <Link to="/">
@@ -29,8 +25,6 @@ function Header({ auth }) {
     </nav>
   );
 }
-
-const mapStateToProps = (state) => ({ auth: state.auth });
 const mapDispatchToProps = { authLogout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
