@@ -5,6 +5,7 @@ import { BsPencil } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { FiLinkedin, FiPhone } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
+import { Link } from "react-router-dom"
 import { dummyuser1 } from "../assets";
 
 function ProfileCompany() {
@@ -35,9 +36,9 @@ function ProfileCompany() {
             lacus fringilla, vestibulum risus at.
           </p>
           <div className="pt-5">
-            <button className="px-20 rounded-md font-semibold text-white bg-purple-800 py-2 ">
+            <Link to='/profile/company/edit' className="px-20 rounded-md font-semibold text-white bg-purple-800 py-2 ">
               Edit profile
-            </button>
+            </Link>
           </div>
           <div className="space-y-4 pb-20">
             <div className="flex flex-row items-center space-x-3 pt-8">

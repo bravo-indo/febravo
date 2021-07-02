@@ -25,7 +25,6 @@ const authRegister = (
   confirmationPassword,
 ) => async (dispatch) => {
   const form = new URLSearchParams();
-
   form.append('name', name);
   form.append('email', email);
   form.append('phone_number', phoneNumber);
@@ -182,9 +181,9 @@ const forgotPass = (email) => {
   };
 };
 
-const authLogout = () =>({
+const authLogout = () => ({
   type: "AUTH_LOGOUT"
 })
 
 
-export { authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass };
+export {authLogout, authRegister,authRegisterRecruiter, authLogin,authLoginEmployee, forgotPass };
