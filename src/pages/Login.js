@@ -16,7 +16,12 @@ class Login extends React.Component {
     this.props.authLogin( email, password)
   }
 
-
+  // componentDidUpdate(){
+  //   const { token} = this.props.auth
+  //   if(token !== null){
+  //     this.props.history.push("/")
+  //   }
+  // }
 
   render() {
     return (
