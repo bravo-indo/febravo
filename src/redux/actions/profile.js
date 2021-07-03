@@ -15,4 +15,35 @@ const getProfileData = (token) => {
   };
 };
 
-export {getProfileData}
+const updateProfileRecruiter = (data, token) => {
+  return async (dispatch) => {
+    console.log('data profile masuk',data, token)
+    const sizeLimit = 1024 * 1024 * 2;
+    if (data.file) {
+      if (data.file.size > sizeLimit) {
+        window.alert("File size is too large");
+      }
+    }
+    const form = new FormData();
+    form.append("company_name", data.compName);
+    form.append("company_field", data.bidang);
+    form.append("address", data.city);
+    form.append("email", data.email);
+    form.append("description", data.desc);
+    form.append("images", data.file);
+    form.append("instagram", data.instagram);
+    form.append("linked_in", data.linkedin);
+    form.append("phone_number", data.phone);
+
+    const { data: newData } = await http(token).put(
+      `${URL}/user/recruiter/details/editprofile`,
+      form
+    );
+    dispatch({
+      type: "SET_UPDATE_PROFILE_RECRUITER",
+      payload: window.alert(newData.message),
+    });
+  }
+}
+
+export {getProfileData, updateProfileRecruiter}

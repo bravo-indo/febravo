@@ -1,11 +1,18 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoLocation } from 'react-icons/go';
 import { dummyuser1 } from '../assets';
 import 'react-tabs/style/react-tabs.css';
 import { useDropzone } from 'react-dropzone';
+import { connect } from "react-redux"
+import {getProfileData} from '../redux/actions/profile'
 
-const EditProfile = () => {
+const EditProfile = ({auth, getProfileData, profile}) => {
+
+  useEffect(() => {
+    getProfileData(auth.token)
+  },[])
+
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
 
   const files = acceptedFiles.map((file) => (
@@ -28,11 +35,11 @@ const EditProfile = () => {
             <div className="flex flex-col items-center">
               <img src={dummyuser1} alt="user" className="w-32 h-32" />
             </div>
-            <h4 className="text-2xl font-semibold">Louis Tomlinson</h4>
-            <h4>Web Developer</h4>
+            <h4 className="text-2xl font-semibold">{profile.data.name}</h4>
+            <h4>{profile.data.job_desk}</h4>
             <div className="flex flex-row items-center space-x-1">
               <GoLocation color="gray" />
-              <p className="text-gray-400">Purwokerto, Jawa Tengah</p>
+              <p className="text-gray-400">{profile.data.address}</p>
             </div>
             <h4 className="text-gray-400">Freelancer</h4>
           </div>
@@ -279,4 +286,11 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  auth: state.auth
+})
+
+const mapDisPatchToProps = { getProfileData }
+
+export default connect(mapStateToProps, mapDisPatchToProps)(EditProfile) ;

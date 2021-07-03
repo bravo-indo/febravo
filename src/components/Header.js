@@ -9,7 +9,7 @@ import {FiMail} from 'react-icons/fi'
 import {IoIosNotificationsOutline} from 'react-icons/io'
 
 function Header({ auth, authLogout, profile }) {
-  const {type_users} = profile.data
+
   return (
     <nav className="container mx-auto flex flex-row justify-between items-center px-5 lg:px-32 py-5 sticky top-0 bg-white">
       <Link to="/">
@@ -21,8 +21,8 @@ function Header({ auth, authLogout, profile }) {
         <div className='flex flex-row space-x-5 items-center'>
           <FiMail size={24} color='gray' />
           <IoIosNotificationsOutline size={24} color='gray' />
-          <Link to={type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
-            {profile.data.images !== null ? <img
+          <Link to={profile?.data.type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
+            {profile?.data.images !== null ? <img
             src={profile.data.images}
             alt="user"
             className="w-8 h-8 rounded-full object-cover"
