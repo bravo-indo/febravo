@@ -46,4 +46,32 @@ const updateProfileRecruiter = (data, token) => {
   }
 }
 
-export {getProfileData, updateProfileRecruiter}
+const updateProfile = (data, token) => {
+  return async (dispatch) => {
+    console.log('data profile masuk',data, token)
+    const sizeLimit = 1024 * 1024 * 2;
+    if (data.file) {
+      if (data.file.size > sizeLimit) {
+        window.alert("File size is too large");
+      }
+    }
+    const form = new FormData();
+    form.append("name", data.name);
+    form.append("job_desk", data.bidang);
+    form.append("address", data.address);
+    form.append("description", data.desc);
+    form.append("images", data.file);
+    form.append("company_name", data.compName);
+
+    const { data: newData } = await http(token).put(
+      `${URL}/user/details/editprofile`,
+      form
+    );
+    dispatch({
+      type: "SET_UPDATE_PROFILE",
+      payload: window.alert(newData.message),
+    });
+  }
+}
+
+export {getProfileData, updateProfileRecruiter, updateProfile}
