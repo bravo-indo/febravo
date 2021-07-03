@@ -7,17 +7,17 @@ const PrivateRoute = ({ children, auth, ...rest }) => {
   const { token } = auth;
   return (
     <Route
-      {...rest}
       render={() => {
         if (token !== null) {
           return children;
+        } else {
+          return <Redirect to="/login" />;
         }
-        return <Redirect to="/login" />;
       }}
       {...rest}
     />
   );
-};
+}
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

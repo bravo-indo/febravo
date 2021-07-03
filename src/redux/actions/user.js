@@ -1,18 +1,15 @@
+/* eslint-disable no-console */
+/* eslint-disable import/prefer-default-export */
 // /*eslint-disable*/
-// import http from '../../helpers/http';
-// import Swal from 'sweetalert2'
-// const { REACT_APP_BACKEND_URL: URL } = process.env;
+// import Swal from 'sweetalert2';
+import http from '../../helpers/http';
 
-// const getUserData = (token) => {
-//   return async (dispatch) => {
-//     console.log("token dispa: ", token);
-//     const { data } = await http(token).get(`${URL}/user/details`);
-//     console.log(data.results);
-//     dispatch({
-//       type: "SET_GET_DETAIL_PROFILE",
-//       payload: data.results,
-//     });
-//   };
-// };
+const { REACT_APP_BACKEND_URL: URL } = process.env;
 
-// export {getUserData}
+export const getUserWorker = (token) => async (dispatch) => {
+  const { data } = await http(token).get(`${URL}/home`);
+  dispatch({
+    type: 'SET_GET_USER_PROFILE',
+    payload: data.succsess,
+  });
+};

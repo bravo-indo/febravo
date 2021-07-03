@@ -8,13 +8,16 @@ import { dummyuser1 } from "../assets";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
 import {getProfileData, getPorto, getExperience} from '../redux/actions/profile'
-function Home({auth,getProfileData, getPorto, getExperience}) {
+import {getUserWorker} from '../redux/actions/user'
+
+function Home({profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
   useEffect(() => {
     console.log(auth.token)
     getProfileData(auth.token)
     getPorto(auth.token)
     getExperience(auth.token)
-  },[])
+    getUserWorker(auth.token)
+  },[profile.data])
 
   return (
     <main>
@@ -41,29 +44,23 @@ function Home({auth,getProfileData, getPorto, getExperience}) {
       </section>
       <section className="bg-gray-100 md:px-32">
         <div className="rounded-xl bg-white">
-          <UserCard
+        {/* {user.data.map((data) => {
+          return <UserCard
             img={dummyuser1}
-            name="Harry Styles"
-            location="Bandung"
+            name={data.Name_Worker}
+            location={data.address}
             role="Web Developer"
-            skill="PHP"
-            to='/user/:id'
+            skill={data.skills}
+            to={`/user/${data.id}`}
           />
-          <UserCard
+        })} */}
+        <UserCard
             img={dummyuser1}
-            name="Harry Styles"
-            location="Bandung"
+            name='Rahadian Reza'
+            location='Bandung Jawa Barat'
             role="Web Developer"
-            skill="PHP"
-            to='/user/:id'
-          />
-          <UserCard
-            img={dummyuser1}
-            name="Harry Styles"
-            location="Bandung"
-            role="Web Developer"
-            skill="PHP"
-            to='/user/:id'
+            skill='PHP'
+            to={`/user/:id`}
           />
         </div>
       </section>
@@ -102,7 +99,8 @@ function Home({auth,getProfileData, getPorto, getExperience}) {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
+  user: state.user
 });
 
-const mapDisPatchToProps = { getProfileData, getPorto, getExperience };
+const mapDisPatchToProps = {getUserWorker, getProfileData, getPorto, getExperience };
 export default connect(mapStateToProps, mapDisPatchToProps)(Home) ;

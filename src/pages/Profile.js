@@ -8,11 +8,20 @@ import { dummyuser1, porto1, porto2, porto3, toko } from "../assets";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { connect } from "react-redux"
+import { getDetailProfile } from '../redux/actions/profile'
+import { useEffect } from "react"
 
-function Profile({profile}) {
+function Profile({profile, getDetailProfile}) {
   const {type_users} = profile.data
+
+  const {id} = useParams()
+
+  useEffect(() => {
+    getDetailProfile(id)
+  }, [])
+
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
@@ -154,5 +163,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
+const mapDispatchToProps = {getDetailProfile}
 
-export default connect(mapStateToProps, null)(Profile);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
