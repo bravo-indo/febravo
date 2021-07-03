@@ -8,12 +8,13 @@ const PrivateRoute = ({ children, auth, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(prop) => {
+      render={() => {
         if (token !== null) {
           return children;
         }
         return <Redirect to="/login" />;
       }}
+      {...rest}
     />
   );
 };
