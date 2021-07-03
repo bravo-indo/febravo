@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { defaultuser, dummyuser1, Logo } from '../assets';
@@ -7,8 +7,15 @@ import { authLogout } from '../redux/actions/auth';
 import Button from './Button';
 import {FiMail} from 'react-icons/fi'
 import {IoIosNotificationsOutline} from 'react-icons/io'
+import {getProfileData , getPorto, getExperience} from '../redux/actions/profile'
 
-function Header({ auth, authLogout, profile }) {
+function Header({ auth, authLogout, profile, getProfileData, getPorto, getExperience  }) {
+
+  useEffect(() => {
+    getProfileData(auth.token)
+    getPorto(auth.token)
+    getExperience(auth.token)
+  },[])
 
   return (
     <nav className="container mx-auto flex flex-row justify-between items-center px-5 lg:px-32 py-5 sticky top-0 bg-white">
@@ -21,8 +28,8 @@ function Header({ auth, authLogout, profile }) {
         <div className='flex flex-row space-x-5 items-center'>
           <FiMail size={24} color='gray' />
           <IoIosNotificationsOutline size={24} color='gray' />
-          <Link to={profile?.data.type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
-            {profile?.data.images !== null ? <img
+          <Link to={profile.data.type_users !== 'recruiter' ? '/profile' : '/profile/company'}>
+            {profile.data.images !== null ? <img
             src={profile.data.images}
             alt="user"
             className="w-8 h-8 rounded-full object-cover"
@@ -49,6 +56,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile
 });
-const mapDispatchToProps = { authLogout };
+const mapDispatchToProps = { authLogout, getProfileData, getPorto, getExperience };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

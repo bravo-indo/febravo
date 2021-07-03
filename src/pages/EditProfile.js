@@ -5,12 +5,14 @@ import { defaultuser, dummyuser1 } from '../assets';
 import 'react-tabs/style/react-tabs.css';
 import { useDropzone } from 'react-dropzone';
 import { connect } from "react-redux"
-import {getProfileData, updateProfile} from '../redux/actions/profile'
+import {getProfileData, updateProfile, addPorto, getExperience, addExperience} from '../redux/actions/profile'
+import { useHistory } from 'react-router-dom'
 
-const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
+const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileData, profile, updateProfile}) => {
 
   useEffect(() => {
     getProfileData(auth.token)
+
   },[])
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
@@ -27,6 +29,7 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
     </li>
   ));
 
+  let history = useHistory()
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -39,6 +42,33 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
   const [desc, setDesc] = useState(profile.data.description)
   const [file, setFile] = useState(null)
 
+  const [companyName, setCompanyName] = useState('')
+  const [position, setPosition] = useState('')
+  const [month, setMonth] = useState('')
+  const [description, setDescription] = useState('')
+
+  const [nameApp, setNameApp] = useState('')
+  const [repo, setRepo] = useState('')
+  const [filePorto, setFilePorto] = useState(null)
+
+  const formExperience = (e) => {
+    e.preventDefault()
+    addExperience({
+      companyName,
+      position,
+      month,
+      description
+    }, auth.token)
+  }
+
+  const formPorto = (e) => {
+    e.preventDefault()
+    addPorto({
+      nameApp,
+      repo,
+      filePorto
+    }, auth.token)
+  }
 
   const formData = (e) => {
     e.preventDefault()
@@ -50,6 +80,7 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
       desc,
       file
     }, auth.token)
+  history.push('/home')
   }
 
   return (
@@ -184,13 +215,14 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
               </h3>
             </div>
             <div className="px-10 py-5">
-              <form className="space-y-8">
+              <form onSubmit={formExperience} className="space-y-8">
                 <div className="flex flex-col space-y-2">
                   <label className="font-semibold text-gray-500">Posisi</label>
                   <input
                     className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                     type="text"
-                    name="posisi"
+                    onChange={(value) => setPosition(value.target.value)}
+                    value={position}
                     placeholder="Web Developer"
                   />
                 </div>
@@ -202,7 +234,8 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                     <input
                       className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                       type="text"
-                      name="perusahaan"
+                      onChange={(value) => setCompanyName(value.target.value)}
+                      value={companyName}
                       placeholder="PT Nusa Kambangan"
                     />
                   </div>
@@ -213,7 +246,8 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                     <input
                       className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                       type="text"
-                      name="lamaPengalaman"
+                      onChange={(value) => setMonth(value.target.value)}
+                    value={month}
                       placeholder="Juni 30"
                     />
                   </div>
@@ -226,10 +260,11 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                     rows="4"
                     className="px-2 py-3 rounded-md border border-gray-200"
                     placeholder="Deskripsi pekerjaan Anda"
-                    name="deskripsiJob"
+                    onChange={(value) => setDescription(value.target.value)}
+                    value={description}
                   />
                 </div>
-                <button className="rounded-md w-full px-5 py-3 border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
+                <button type='submit' className="rounded-md w-full px-5 py-3 border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
                   Tambah Pengalaman Kerja
                 </button>
               </form>
@@ -250,7 +285,8 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                   <input
                     className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                     type="text"
-                    name="appName"
+                    onChange={(value) => setNameApp(value.target.value)}
+                    value={nameApp}
                     placeholder="Masukan nama aplikasi"
                   />
                 </div>
@@ -261,7 +297,8 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                   <input
                     className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                     type="text"
-                    name="repoLink"
+                    onChange={(value) => setRepo(value.target.value)}
+                    value={repo}
                     placeholder="Masukan alamat link repository Anda"
                   />
                 </div>
@@ -274,7 +311,6 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                       <input
                         className="mr-5"
                         type="radio"
-                        name="portoType"
                         value="Aplikasi Mobile"
                       />
                       Aplikasi Mobile
@@ -283,41 +319,24 @@ const EditProfile = ({auth, getProfileData, profile, updateProfile}) => {
                       <input
                         className="mr-5"
                         type="radio"
-                        name="portoType"
                         value="Aplikasi Web"
                       />
                       Aplikasi Web
                     </label>
                   </div>
                 </div>
+              </form>
                 <div className="flex flex-col space-y-2">
-                  <label className="font-semibold text-gray-500">
+                  <label className="font-semibold text-gray-500 mt-10">
                     Upload Gambar
                   </label>
-
-                  <section className="container">
-                    <div
-                      {...getRootProps({
-                        className:
-                          'dropzone, flex flex-col items-center justify-center border-2 h-40 border-dashed',
-                      })}
-                    >
-                      <input {...getInputProps()} />
-                      <p>
-                        Drag 'n' drop some files here, or click to select files
-                      </p>
-                    </div>
-                    <aside>
-                      <h4>Files</h4>
-                      <ul>{files}</ul>
-                    </aside>
-                  </section>
+                  <button onClick={handleClick} className='h-64 border-2 border-dashed '>Click here to select a picture</button>
+                  <input style={{ display: "none" }} ref={hiddenFileInput} type="file" onChange={(value) => setFilePorto(value.target.files[0])} />
                 </div>
-                <hr className=" border border-gray-300" />
-                <button className="rounded-md w-full px-5 py-3  border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
-                  Tambah Portfolio
+                <hr className=" border border-gray-300 mt-10" />
+                <button onClick={formPorto} className=" mt-10 rounded-md w-full px-5 py-3  border-yellow-500 hover:border-yellow-700 text-yellow-500 border-2 font-semibold">
+                  Tambah Portofolio
                 </button>
-              </form>
             </div>
           </div>
         </div>
@@ -331,6 +350,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 })
 
-const mapDisPatchToProps = { getProfileData, updateProfile }
+const mapDisPatchToProps = {addExperience, getExperience, getProfileData, updateProfile, addPorto }
 
 export default connect(mapStateToProps, mapDisPatchToProps)(EditProfile) ;

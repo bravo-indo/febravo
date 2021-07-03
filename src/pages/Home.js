@@ -7,11 +7,13 @@ import { connect } from "react-redux"
 import { dummyuser1 } from "../assets";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
-import {getProfileData} from '../redux/actions/profile'
-function Home({auth,getProfileData}) {
+import {getProfileData, getPorto, getExperience} from '../redux/actions/profile'
+function Home({auth,getProfileData, getPorto, getExperience}) {
   useEffect(() => {
     console.log(auth.token)
     getProfileData(auth.token)
+    getPorto(auth.token)
+    getExperience(auth.token)
   },[])
 
   return (
@@ -102,5 +104,5 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-const mapDisPatchToProps = { getProfileData };
+const mapDisPatchToProps = { getProfileData, getPorto, getExperience };
 export default connect(mapStateToProps, mapDisPatchToProps)(Home) ;

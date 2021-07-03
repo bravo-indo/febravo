@@ -74,4 +74,80 @@ const updateProfile = (data, token) => {
   }
 }
 
-export {getProfileData, updateProfileRecruiter, updateProfile}
+const getPorto = (token) => {
+  console.log('token masuk', token)
+  return async (dispatch) => {
+    const { data } = await http(token).get(`${URL}/user/details/portofolio`);
+    console.log(data.results);
+    dispatch({
+      type: "SET_GET_PORTO",
+      payload: data.results,
+    });
+  };
+}
+
+const getExperience = (token) => {
+  console.log('token masuk', token)
+  return async (dispatch) => {
+    const { data } = await http(token).get(`${URL}/user/details/experience`);
+    console.log(data.results);
+    dispatch({
+      type: "SET_GET_EXPERIENCE",
+      payload: data.results,
+    });
+  };
+}
+
+const addPorto = (data, token) => {
+  return async (dispatch) => {
+    console.log('data profile porto',data, token)
+    const sizeLimit = 1024 * 1024 * 2;
+    if (data.file) {
+      if (data.file.size > sizeLimit) {
+        window.alert("File size is too large");
+      }
+    }
+    const form = new FormData();
+    form.append("project_name", data.nameApp);
+    form.append("repository", data.repo);
+    form.append("type_project", 'aplikasi');
+    form.append("portofolio_file", data.filePorto);
+
+    const { data: newData } = await http(token).post(
+      `${URL}/user/details/editprofile`,
+      form
+    );
+    dispatch({
+      type: "SET_ADD_PORTO",
+      payload: newData,
+    });
+  }
+}
+
+const addExperience = (data, token) => {
+  return async (dispatch) => {
+    console.log('data profile exp',data, token)
+    const sizeLimit = 1024 * 1024 * 2;
+    if (data.file) {
+      if (data.file.size > sizeLimit) {
+        window.alert("File size is too large");
+      }
+    }
+    const form = new URLSearchParams();
+    form.append("company_name", data.companyName);
+    form.append("position", data.position);
+    form.append("month_years", data.month);
+    form.append("description", data.description);
+
+    const { data: newData } = await http(token).post(
+      `${URL}/user/details/editprofile/experienceWork`,
+      form
+    );
+    dispatch({
+      type: "SET_ADD_EXPERIENCE",
+      payload: newData,
+    });
+  }
+}
+
+export {addExperience, getExperience, getProfileData, updateProfileRecruiter,getPorto,addPorto, updateProfile}

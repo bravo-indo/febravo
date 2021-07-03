@@ -4,19 +4,21 @@ import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FiGithub, FiGitlab } from "react-icons/fi";
-import { dummyuser1, porto1, porto2, porto3, toko } from "../assets";
+import { defaultuser, dummyuser1, porto1, porto2, porto3, toko } from "../assets";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import {getProfileData} from '../redux/actions/profile'
+import {getProfileData ,getPorto, getExperience} from '../redux/actions/profile'
 
 
-function UserProfile({auth, getProfileData, profile}) {
+function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
 
   useEffect(() => {
     getProfileData(auth.token)
+    getPorto(auth.token)
+    getExperience(auth.token)
   },[])
 
   return (
@@ -50,32 +52,8 @@ function UserProfile({auth, getProfileData, profile}) {
           </Link>
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Python
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Laravel
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Golang
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Javascript
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              PHP
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              HTML
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              C++
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Kotlin
-            </li>
-            <li className="bg-yellow-400 text-white text-center rounded-md">
-              Swift
+          <li className="bg-yellow-400 text-white text-center rounded-md">
+              asdas
             </li>
           </ul>
           <div className="flex flex-row items-center space-x-3 pt-8">
@@ -106,51 +84,28 @@ function UserProfile({auth, getProfileData, profile}) {
               </Tab>
             </TabList>
             <TabPanel>
-              <div className="-ml-8 grid grid-cols-3 pt-10 gap-y-5">
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto1} alt="porto" className="w-52 h-36" />
-                  <p>Remainder app</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto2} alt="porto" />
-                  <p>Social media app</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto3} alt="porto" />
-                  <p>Project management web</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto3} alt="porto" />
-                  <p>Project management web</p>
-                </div>
+              <div className="grid grid-cols-4 pt-10 gap-y-5 gap-x-4">
+                {profile.porto.map((data) => {
+                  return (
+                    <div className="flex flex-col items-center space-y-3" >
+                      <img src={data.portofolios} alt="porto" className="w-52 h-36 rounded-md object-cover" />
+                      <p className='text-center font-medium pt-2'>{data.project_name}</p>
+                  </div>)
+                })}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="gap-y-5">
-                <CardExperience
+              {profile.experience.map((data) => {
+                return <CardExperience
                   img={toko}
-                  role="Engineer"
-                  office="Tokopedia"
-                  date="July 2019 - January 2020"
+                  role={data.position}
+                  office={data.company_name}
+                  date={data.month_years}
                   month={6}
-                  desc="Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Vestibulum erat orci,
-                  mollis nec gravida sed, ornare quis urna.
-                  Curabitur eu lacus fringilla,
-                  vestibulum risus at."
+                  desc={data.description}
                 />
-                <CardExperience
-                  img={toko}
-                  role="Engineer"
-                  office="Tokopedia"
-                  date="July 2019 - January 2020"
-                  month={6}
-                  desc="Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Vestibulum erat orci,
-                  mollis nec gravida sed, ornare quis urna.
-                  Curabitur eu lacus fringilla,
-                  vestibulum risus at."
-                />
+              })}
               </div>
             </TabPanel>
           </Tabs>
@@ -165,6 +120,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 })
 
-const mapDisPatchToProps = { getProfileData }
+const mapDisPatchToProps = { getProfileData, getPorto, getExperience }
 
 export default connect(mapStateToProps, mapDisPatchToProps)( UserProfile);
