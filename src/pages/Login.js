@@ -1,25 +1,34 @@
 /*eslint-disable*/
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import {authLogin} from "../redux/actions/auth"
+import { useState } from 'react'
+import { useEffect } from 'react'
 
-class Login extends React.Component {
-  state = {
-    email :"",
-    password: ""
-  }
 
-  onLogin = (event) =>{
+function Login({auth, authLogin}) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  let history = useHistory()
+
+  const onLogin = (event) =>{
     event.preventDefault()
-    const {email, password} = this.state
-    this.props.authLogin( email, password)
+    authLogin( email, password)
   }
 
+  const isLogin = () => {
+    if (auth.token !== null) {
+      history.push("/home");
+    }
+  };
 
-  render() {
-    return (
-      <section className="auth bg-gray-100">
+  useEffect(() => {
+    isLogin()
+  },[auth.token])
+
+  return (
+    <section className="auth bg-gray-100">
         <div className="container mx-auto pt-10">
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="md:visible side-left px-16 md:p-10 w-full h-10 md:h-auto text-white">
@@ -36,11 +45,11 @@ class Login extends React.Component {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                 euismod ipsum et dui rhoncus auctor.
               </p>
-              <form onSubmit={this.onLogin} className="flex flex-col space-y-8 text-gray-400">
+              <form onSubmit={onLogin} className="flex flex-col space-y-8 text-gray-400">
                 <div>
                   <label className="flex flex-row">Email</label>
                   <input
-                    onChange={(event)=>this.setState({email: event.target.value})}
+                    onChange={(value) => setEmail(value.target.value)}
                     className="w-full px-2 py-3 rounded-md"
                     type="email"
                     name="email"
@@ -50,7 +59,7 @@ class Login extends React.Component {
                 <div>
                   <label className="flex flex-row">Kata Sandi</label>
                   <input
-                    onChange={(event)=>this.setState({password: event.target.value})}
+                    onChange={(value) => setPassword(value.target.value)}
                     className="w-full px-2 py-3 rounded-md"
                     type="password"
                     name="password"
@@ -89,9 +98,10 @@ class Login extends React.Component {
           </div>
         </div>
       </section>
-    );
-  }
+  )
 }
+
+
 
 const mapStateToProps = (state) => ({
   auth: state.auth

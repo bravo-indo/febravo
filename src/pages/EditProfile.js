@@ -34,13 +34,17 @@ const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileDa
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
+  const hiddenFileInput1 = React.useRef(null);
+  const handleClick1 = (event) => {
+    hiddenFileInput1.current.click();
+  };
 
   const [name, setName] = useState(profile.data.name)
   const [bidang, setBidang] = useState(profile.data.job_desk)
   const [address, setAddress] = useState(profile.data.address)
   const [compName, setCompName] = useState(profile.data.company_name)
   const [desc, setDesc] = useState(profile.data.description)
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(profile.data.images)
 
   const [companyName, setCompanyName] = useState('')
   const [position, setPosition] = useState('')
@@ -94,12 +98,12 @@ const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileDa
             src={profile.data.images}
             alt="user"
             className="-mt-16 w-32 h-32 rounded-full object-cover"
-          /></button> : <button onClick={handleClick}><img
+          /></button> : <button onClick={handleClick1}><img
             src={defaultuser}
             alt="user"
             className="-mt-16 w-32 h-32 rounded-full bg-white object-cover"
           /></button>}
-          <input style={{ display: "none" }} ref={hiddenFileInput} type="file" onChange={(value) => setFile(value.target.files[0])}/>
+          <input style={{ display: "none" }} ref={hiddenFileInput1} type="file" onChange={(value) => setFile(value.target.files[0])}/>
             </div>
             <h4 className="text-2xl font-semibold">{profile.data.name}</h4>
             <h4>{profile.data.job_desk}</h4>
@@ -112,7 +116,7 @@ const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileDa
           <button onClick={formData} className="bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Simpan
           </button>
-          <button className="bg-white border-2 border-purple-800 text-purple-800 font-semibold py-3 w-full rounded-md">
+          <button onClick={() => history.push('/profile')} className="bg-white border-2 border-purple-800 text-purple-800 font-semibold py-3 w-full rounded-md">
             Batal
           </button>
         </div>

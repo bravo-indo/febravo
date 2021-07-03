@@ -9,7 +9,7 @@ function UserCard({
 }) {
   return (
     <div className=" flex flex-row space-x-8 px-5 py-10 items-center border-b-2 border-gray-200">
-      <img src={img} alt="user" className="w-24 h-24" />
+      <img src={img} alt="user" className="w-24 h-24 rounded-full" />
       <div className="space-y-2 flex-1">
         <h4 className="text-2xl font-semibold">{name}</h4>
         <h5 className="text-gray-400">{role}</h5>

@@ -1,6 +1,7 @@
 const initialState = {
   data: {},
   porto: {},
+  dataUser: {},
   addPorto: {},
   experience: {},
   addExperience: {},
@@ -12,6 +13,11 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case 'SET_GET_DETAIL_USER':
+      return {
+        ...state,
+        dataUser: action.payload,
       };
     case 'SET_UPDATE_PROFILE_RECRUITER':
       return {
