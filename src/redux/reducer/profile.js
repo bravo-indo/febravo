@@ -1,5 +1,9 @@
 const initialState = {
   data: {},
+  porto: {},
+  addPorto: {},
+  experience: {},
+  addExperience: {},
 };
 
 const profile = (state = initialState, action) => {
@@ -18,6 +22,26 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case 'SET_GET_PORTO':
+      return {
+        ...state,
+        porto: action.payload,
+      };
+    case 'SET_GET_EXPERIENCE':
+      return {
+        ...state,
+        experience: action.payload,
+      };
+    case 'SET_ADD_PORTO':
+      return {
+        ...state,
+        addPorto: action.payload,
+      };
+    case 'SET_ADD_EXPERIENCE':
+      return {
+        ...state,
+        addExperience: action.payload,
       };
     default:
       return {
