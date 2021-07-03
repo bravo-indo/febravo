@@ -9,6 +9,16 @@ const profile = (state = initialState, action) => {
         ...state,
         data: action.payload,
       };
+    case 'SET_UPDATE_PROFILE_RECRUITER':
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case 'SET_UPDATE_PROFILE':
+      return {
+        ...state,
+        data: action.payload,
+      };
     default:
       return {
         ...state,
