@@ -40,14 +40,17 @@ function Home({auth,getProfileData}) {
       </section>
       <section className="bg-gray-100 md:px-32">
         <div className="rounded-xl bg-white">
+          {dummyuser1}
           <UserCard
             img={dummyuser1}
+            img=""
             name="Harry Styles"
             location="Bandung"
             role="Web Developer"
             skill="PHP"
             to='/user/:id'
           />
+          {console.log(dummyuser1)}
           <UserCard
             img={dummyuser1}
             name="Harry Styles"

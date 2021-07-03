@@ -114,7 +114,7 @@ const authLogin = (email, password) => {
     form.append("email", email);
     form.append("password", password);
     try {
-      const { data } = await http().post(`${URL}/auth/login/recruiter`, form.toString());
+      const { data } = await http().post(`http://localhost:8080/auth/login/recruiter`, form.toString());
       dispatch({
         type: "AUTH_LOGIN",
         payload: data.succsess.token
