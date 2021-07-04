@@ -104,6 +104,7 @@ constructor(props){
                 <button type='submit' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
                   Daftar
                 </button>
+              <Link to='/register/recruiter' className='text-white bg-yellow-500 flex flex-row justify-center py-3 rounded-md'>Daftar Sebagai Recruiter</Link>
                 <p className="text-center text-gray-700">
                   Anda sudah punya akun?
                   {' '}
