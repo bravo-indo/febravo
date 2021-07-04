@@ -1,21 +1,21 @@
 const initialState = {
-  data:{}
-}
+  data: {},
+};
 
-const hire = (state = initialstate, action) => {
+const hire = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_HIRE" :{
+    case 'ADD_HIRE': {
       return {
         ...state,
-        data : action.payload
-      }
+        data: action.payload,
+      };
     }
-    default :{
+    default: {
       return {
-        ...state
-      }
+        ...state,
+      };
     }
   }
-}
+};
 
-export default hire
+export default hire;

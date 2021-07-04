@@ -1,10 +1,11 @@
 /*eslint-disable*/
 // import React from 'react';
-import React, { useEffect } from "react";
-import { GoLocation } from 'react-icons/go';
+import { useEffect, useState } from "react";
+import { GoLocation } from "react-icons/go";
 import { connect } from 'react-redux';
 import { dummyuser1 } from '../assets';
 import {getProfileData} from '../redux/actions/profile'
+import {addHireData} from '../redux/actions/hire'
 
 function Hire({auth, getProfileData, profile}) {
   useEffect(() => {
@@ -13,6 +14,17 @@ function Hire({auth, getProfileData, profile}) {
   // console.log(profile.data.id)
 
   const id_recruiter = profile.data.id
+  const id_worker = 27
+  const [name, setName] = ""
+  const [email, setEmail] = ""
+  const [phone, setPhone] = ""
+  const [description, setDescription] = ""
+
+
+  const formData = (event) => {
+    event.preventDefault()
+    addHireData({id_recruiter, id_worker, name, email, phone, description}, auth.token)
+  }
 
   return (
     <main className="bg-gray-100 px-32 py-10 flex flex-row space-x-20 pb-40">
@@ -69,7 +81,7 @@ function Hire({auth, getProfileData, profile}) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
           ipsum et dui rhoncus auctor.
         </p>
-        <form className="space-y-4 flex flex-col">
+        <form onSubmit={formData} className="space-y-4 flex flex-col">
           <label className="text-gray-400 text-sm">
             Tujuan tentang pesan ini
           </label>
@@ -84,24 +96,28 @@ function Hire({auth, getProfileData, profile}) {
           </div>
           <label className="text-gray-400 text-sm">Nama lengkap</label>
           <input
+             onChange={(event) => setName(event.target.value)}
             className="pl-3 py-3 focus:outline-none rounded-lg"
             type="text"
             placeholder="Masukan nama lengkap"
           />
           <label className="text-gray-400 text-sm">Email</label>
           <input
+            onChange={(event) => setEmail(event.target.value)}
             className="pl-3 py-3 focus:outline-none rounded-lg"
             type="text"
             placeholder="Masukan email"
           />
           <label className="text-gray-400 text-sm">No Handphone</label>
           <input
+            onChange={(event) => setPhone(event.target.value)}
             className="pl-3 py-3 focus:outline-none rounded-lg"
             type="text"
             placeholder="Masukan no handphone"
           />
           <label className="text-gray-400 text-sm">Deskripsi</label>
           <textarea
+            onChange={(event) => setDescription(event.target.value)}
             className="h-44 pl-3 py-3 focus:outline-none rounded-lg"
             placeholder="Deskripsikan/jelaskan lebih detail "
           />
@@ -114,11 +130,11 @@ function Hire({auth, getProfileData, profile}) {
   );
 }
 
-const mapStateToProps  = (state) =>({
-  profile: state.profile,
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth : state.auth,
+  profile : state.profile
 })
 
-const mapDisPatchToProps = {getProfileData}
+const mapDispatchToProps = {getProfileData}
 
-export default connect(mapStateToProps, mapDisPatchToProps)(Hire);
+export default connect(mapStateToProps, mapDispatchToProps)(Hire);

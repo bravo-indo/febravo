@@ -7,6 +7,7 @@ import message from './message';
 import profile from './profile';
 import user from './user';
 import resetPass from './resetPass';
+import hire from './hire';
 
 const persistAuth = {
   storage,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   profile,
   user,
   resetPass,
+  hire,
 });
 
 export default reducer;
