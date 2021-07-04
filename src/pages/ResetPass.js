@@ -1,9 +1,22 @@
 /*eslint-disable*/
 import React from "react";
+import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import SideAuth from "../components/SideAuth";
+import {resetPassword} from '../redux/actions/resetPassword'
 
 class ResetPass extends React.Component {
+  state = {
+    password: '',
+    confirm_password: ''
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+    this.props.resetPassword(this.state,this.props.resetPass.email)
+
+  }
   render() {
     return (
       <section className="auth bg-gray-100">
@@ -15,14 +28,14 @@ class ResetPass extends React.Component {
               <p className="py-7">
                 You need to change your password to activate your account
               </p>
-              <form className="flex flex-col space-y-8 text-gray-400">
+              <form onSubmit={this.onSubmit} className="flex flex-col space-y-8 text-gray-400">
                 <div>
                   <label className="flex flex-row">Kata Sandi</label>
                   <input
                     className="w-full px-2 py-3 rounded-md"
                     type="password"
-                    name="password"
                     placeholder="Masukan Kata Sandi"
+                    onChange={(e) => this.setState({password: e.target.value})}
                   />
                 </div>
                 <div>
@@ -30,15 +43,13 @@ class ResetPass extends React.Component {
                   <input
                     className="w-full px-2 py-3 rounded-md"
                     type="password"
-                    name="password"
                     placeholder="Masukan Konfirmasi Kata Sandi"
+                    onChange={(e) => this.setState({confirm_password: e.target.value})}
                   />
                 </div>
-                <Link to="confirmPass">
-                  <button className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
+                  <button type='submit' className="w-full px-2 py-3 rounded-md bg-yellow-500 text-white">
                     Reset Password
                   </button>
-                </Link>
               </form>
             </div>
           </div>
@@ -48,4 +59,9 @@ class ResetPass extends React.Component {
   }
 }
 
-export default ResetPass;
+const mapStateToProps = (state) => ({
+  resetPass: state.resetPass,
+});
+const mapDispatchToProps = { resetPassword };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPass) ;
