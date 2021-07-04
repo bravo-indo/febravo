@@ -53,7 +53,7 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
           <li className="bg-yellow-400 text-white text-center rounded-md">
-              asdas
+              PHP
             </li>
           </ul>
           <div className="flex flex-row items-center space-x-3 pt-8">

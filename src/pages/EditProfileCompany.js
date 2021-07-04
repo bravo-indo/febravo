@@ -6,6 +6,7 @@ import "react-tabs/style/react-tabs.css";
 import { connect } from "react-redux"
 import {getProfileData, updateProfileRecruiter} from '../redux/actions/profile'
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
 
 const EditProfileCompany = ({auth, getProfileData, profile,updateProfileRecruiter}) => {
 
@@ -21,13 +22,15 @@ const EditProfileCompany = ({auth, getProfileData, profile,updateProfileRecruite
   const [instagram, setInstagram] = useState(profile.data.instagram)
   const [phone, setPhone] = useState(profile.data.phone_number)
   const [linkedin, setLinkedin] = useState(profile.data.linked_in)
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(profile.data.images)
 
+  let history = useHistory()
   const formData = (e) => {
     e.preventDefault()
     updateProfileRecruiter({
       compName,bidang,city,desc,email,instagram,phone,linkedin,file
     },auth.token)
+    history.push('/home')
   }
 
   const hiddenFileInput = React.useRef(null);
@@ -63,7 +66,7 @@ const EditProfileCompany = ({auth, getProfileData, profile,updateProfileRecruite
           <button onClick={formData} className="bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Simpan
           </button>
-          <button className="bg-white border-2 border-purple-800 text-purple-800 font-semibold py-3 w-full rounded-md">
+          <button onClick={() => history.push('/profile/company')} className="bg-white border-2 border-purple-800 text-purple-800 font-semibold py-3 w-full rounded-md">
             Batal
           </button>
         </div>

@@ -41,7 +41,7 @@ const updateProfileRecruiter = (data, token) => {
     );
     dispatch({
       type: "SET_UPDATE_PROFILE_RECRUITER",
-      payload: window.alert(newData.message),
+      payload: newData.message,
     });
   }
 }
@@ -69,7 +69,7 @@ const updateProfile = (data, token) => {
     );
     dispatch({
       type: "SET_UPDATE_PROFILE",
-      payload: window.alert(newData.message),
+      payload: newData.message,
     });
   }
 }
@@ -150,4 +150,14 @@ const addExperience = (data, token) => {
   }
 }
 
-export {addExperience, getExperience, getProfileData, updateProfileRecruiter,getPorto,addPorto, updateProfile}
+const getDetailProfile = (id) => {
+  return async (dispatch) => {
+    const { data } = await http().get(`${URL}/user/recruiter/details/${id}`);
+    dispatch({
+      type: "SET_GET_DETAIL_USER",
+      payload: data.results,
+    });
+  };
+};
+
+export {getDetailProfile, addExperience, getExperience, getProfileData, updateProfileRecruiter,getPorto,addPorto, updateProfile}
