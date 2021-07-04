@@ -45,7 +45,7 @@ function Home({profile, user, auth, getProfileData, getPorto, getExperience, get
       </section>
       <section className="bg-gray-100 md:px-32">
         <div className="rounded-xl bg-white">
-        {/* {user.data.map((data) => {
+        {user.data.map((data) => {
           return <UserCard
             img={dummyuser1}
             name={data.Name_Worker}
@@ -54,15 +54,7 @@ function Home({profile, user, auth, getProfileData, getPorto, getExperience, get
             skill={data.skills}
             to={`/user/${data.id}`}
           />
-        })} */}
-        <UserCard
-            img={dummyuser1}
-            name='Rahadian Reza'
-            location='Bandung Jawa Barat'
-            role="Web Developer"
-            skill='PHP'
-            to={`/user/${user.data.id}`}
-          />
+        })}
         </div>
       </section>
       <section className="bg-gray-100 py-20">

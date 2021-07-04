@@ -109,6 +109,29 @@ const getExperience = (token) => {
     });
   };
 }
+const getPortoById = (id, token) => {
+  console.log('token masuk', id)
+  return async (dispatch) => {
+    const { data } = await http(token).get(`${URL}/user/details/portofolios/${id}`);
+    console.log(data.results);
+    dispatch({
+      type: "SET_GET_PORTO_ID",
+      payload: data.results,
+    });
+  };
+}
+
+const getExperienceById = (id, token) => {
+  console.log('token masuk', id)
+  return async (dispatch) => {
+    const { data } = await http(token).get(`${URL}/user/details/experiences/${id}`);
+    console.log(data.results);
+    dispatch({
+      type: "SET_GET_EXPERIENCE_ID",
+      payload: data.results,
+    });
+  };
+}
 
 const addPorto = (data, token) => {
   return async (dispatch) => {
@@ -187,4 +210,4 @@ const getDetailProfile = (id, token) => {
   };
 };
 
-export {getDetailProfile, addExperience, getExperience, getProfileData, updateProfileRecruiter,getPorto,addPorto, updateProfile}
+export {getPortoById, getExperienceById, getDetailProfile, addExperience, getExperience, getProfileData, updateProfileRecruiter,getPorto,addPorto, updateProfile}

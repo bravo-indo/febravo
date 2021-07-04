@@ -10,16 +10,18 @@ import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
 import { Link, useParams } from "react-router-dom"
 import { connect } from "react-redux"
-import { getDetailProfile } from '../redux/actions/profile'
+import { getDetailProfile, getPortoById, getExperienceById } from '../redux/actions/profile'
 import { useEffect } from "react"
 
-function Profile({auth, profile, getDetailProfile}) {
+function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceById}) {
   const {type_users} = profile.data
 
   const {id} = useParams()
 
   useEffect(() => {
     getDetailProfile(id, auth.token)
+    getPortoById(id, auth.token)
+    getExperienceById(id, auth.token)
   }, [])
 
   return (
@@ -110,51 +112,29 @@ function Profile({auth, profile, getDetailProfile}) {
               </Tab>
             </TabList>
             <TabPanel>
-              <div className="-ml-8 grid grid-cols-3 pt-10 gap-y-5">
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto1} alt="porto" className="w-52 h-36" />
-                  <p>Remainder app</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto2} alt="porto" />
-                  <p>Social media app</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto3} alt="porto" />
-                  <p>Project management web</p>
-                </div>
-                <div className="flex flex-col items-center space-y-3 ">
-                  <img src={porto3} alt="porto" />
-                  <p>Project management web</p>
-                </div>
+            <div className="grid grid-cols-1 lg:grid-cols-4 pt-10 gap-y-5 gap-x-4">
+                {profile.portoId.map((data) => (
+                  data.id !== null ?
+                    <div className="flex flex-col items-center space-y-3" >
+                      <img src={data.portofolios} alt="porto" className="w-52 h-36 rounded-md object-cover" />
+                      <p className='text-center font-medium pt-2'>{data.project_name}</p>
+                    </div> : <div className='flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any portfolio</p></div>
+                ))}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="gap-y-5">
-                <CardExperience
+              {profile.experienceId.map((data) => (
+                data.id !== null ?
+                 <CardExperience
                   img={toko}
-                  role="Engineer"
-                  office="Tokopedia"
-                  date="July 2019 - January 2020"
+                  role={data.position}
+                  office={data.company_name}
+                  date={data.month_years}
                   month={6}
-                  desc="Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Vestibulum erat orci,
-                  mollis nec gravida sed, ornare quis urna.
-                  Curabitur eu lacus fringilla,
-                  vestibulum risus at."
-                />
-                <CardExperience
-                  img={toko}
-                  role="Engineer"
-                  office="Tokopedia"
-                  date="July 2019 - January 2020"
-                  month={6}
-                  desc="Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Vestibulum erat orci,
-                  mollis nec gravida sed, ornare quis urna.
-                  Curabitur eu lacus fringilla,
-                  vestibulum risus at."
-                />
+                  desc={data.description}
+                /> : <div className='pt-10 flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any experience</p></div>
+              ))}
               </div>
             </TabPanel>
           </Tabs>
@@ -169,7 +149,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = {getDetailProfile}
+const mapDispatchToProps = {getDetailProfile, getPortoById, getExperienceById}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

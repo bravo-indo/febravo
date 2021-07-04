@@ -1,9 +1,11 @@
 const initialState = {
   data: {},
   porto: {},
+  portoId: {},
   dataUser: {},
   addPorto: {},
   experience: {},
+  experienceId: {},
   addExperience: {},
 };
 
@@ -38,6 +40,16 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         experience: action.payload,
+      };
+    case 'SET_GET_PORTO_ID':
+      return {
+        ...state,
+        portoId: action.payload,
+      };
+    case 'SET_GET_EXPERIENCE_ID':
+      return {
+        ...state,
+        experienceId: action.payload,
       };
     case 'SET_ADD_PORTO':
       return {
