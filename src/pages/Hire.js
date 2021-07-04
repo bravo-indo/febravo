@@ -93,7 +93,7 @@ function Hire({user, auth, hire}) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod
           ipsum et dui rhoncus auctor.
         </p>
-        <form onSubmit={formData} className="space-y-4 flex flex-col">
+        <form className="space-y-4 flex flex-col">
           <label className="text-gray-400 text-sm">
             Tujuan tentang pesan ini
           </label>
