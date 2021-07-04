@@ -7,8 +7,9 @@ import { useDropzone } from 'react-dropzone';
 import { connect } from "react-redux"
 import {getProfileData, updateProfile, addPorto, getExperience, addExperience} from '../redux/actions/profile'
 import { useHistory } from 'react-router-dom'
+import { addSkill } from '../redux/actions/skll'
 
-const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileData, profile, updateProfile}) => {
+const EditProfile = ({addSkill,addExperience, getExperience, addPorto, auth, getProfileData, profile, updateProfile}) => {
 
   useEffect(() => {
     getProfileData(auth.token)
@@ -54,6 +55,13 @@ const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileDa
   const [nameApp, setNameApp] = useState('')
   const [repo, setRepo] = useState('')
   const [filePorto, setFilePorto] = useState(null)
+
+  const [skill, setSkill] = useState('')
+
+  const addSkillForm = (e) => {
+    e.preventDefault()
+    addSkill(skill, auth.token)
+  }
 
   const formExperience = (e) => {
     e.preventDefault()
@@ -203,8 +211,10 @@ const EditProfile = ({addExperience, getExperience, addPorto, auth, getProfileDa
                       className="col-span-4 px-2 py-3 rounded-md border border-gray-200"
                       type="text"
                       placeholder="Java"
+                      onChange={(value) => setSkill(value.target.value)}
+                      value={skill}
                     />
-                    <button type='submit' className="rounded-md px-5 py-3 bg-yellow-500 hover:bg-yellow-700 text-white border-2 font-semibold">
+                    <button onClick={addSkillForm} className="rounded-md px-5 py-3 bg-yellow-500 hover:bg-yellow-700 text-white border-2 font-semibold">
                       Simpan
                     </button>
                   </div>
@@ -354,6 +364,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 })
 
-const mapDisPatchToProps = {addExperience, getExperience, getProfileData, updateProfile, addPorto }
+const mapDisPatchToProps = {addSkill, addExperience, getExperience, getProfileData, updateProfile, addPorto }
 
 export default connect(mapStateToProps, mapDisPatchToProps)(EditProfile) ;

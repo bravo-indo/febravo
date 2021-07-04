@@ -15,31 +15,25 @@ const Toast = Swal.mixin({
   }
 })
 
-export const hire = (data, id ,token) => {
+export const addSkill = (data, token) => {
   return async (dispatch) => {
+    console.log('data profile porto',data, token)
     const form = new URLSearchParams();
-    form.append("project", data.purpose);
-    form.append("name_recruiter", data.name);
-    form.append("email_recruiter", data.email);
-    form.append("phone_number_recruiter", data.phone);
-    form.append("desc_hire", data.desc);
+    form.append("name", data);
     const { data: newData } = await http(token).post(
-      `${URL}/user/recruiter/details/${id}`,
+      `${URL}/user/details/editprofile`,
       form
     );
     dispatch({
-      type: "SET_HIRE",
+      type: "SET_ADD_SKILL",
       payload: newData,
     });
     dispatch({
-      type: "SET_ADD_EXPERIENCE_SUCCESS",
+      type: "SET_ADD_PORTO_SUCCESS",
       payload: Toast.fire({
         icon: 'success',
-        title: 'hire successfully'
+        title: 'Add skill success'
       })
-    });
-    dispatch({
-      type: "SET_CLEAR_USER",
     });
   }
 }

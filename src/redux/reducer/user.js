@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  user: [],
 };
 
 const user = (state = initialState, action) => {
@@ -8,6 +9,16 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case 'SET_ADD_USER':
+      return {
+        ...state,
+        user: [...state.user, ...[action.payload]],
+      };
+    case 'SET_CLEAR_USER':
+      return {
+        ...state,
+        user: [],
       };
     default:
       return {
