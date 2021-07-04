@@ -8,21 +8,28 @@ import { defaultuser,  toko } from "../assets";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
-import { Link, useParams } from "react-router-dom"
+import { Link, useHistory, useParams } from "react-router-dom"
 import { connect } from "react-redux"
 import { getDetailProfile, getPortoById, getExperienceById } from '../redux/actions/profile'
 import { useEffect } from "react"
+import { addUser } from "../redux/actions/user"
 
-function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceById}) {
+
+function Profile({addUser, auth, profile, getDetailProfile, getPortoById, getExperienceById}) {
   const {type_users} = profile.data
-
+  let history = useHistory()
   const {id} = useParams()
 
   useEffect(() => {
     getDetailProfile(id, auth.token)
     getPortoById(id, auth.token)
     getExperienceById(id, auth.token)
-  }, [])
+  }, [profile.data])
+
+  const onAddUser = () => {
+    addUser(profile.dataUser)
+    history.push(`/hire/${id}`)
+  }
 
   return (
     <main className="bg-gray-100 pb-20">
@@ -51,9 +58,9 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
           {profile.dataUser.description}
           </p>
           {type_users === 'recruiter' &&
-          <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
+          <button onClick={onAddUser} className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Hire
-          </Link> }
+          </button> }
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
             <li className="bg-yellow-400 text-white text-center rounded-md">
@@ -149,7 +156,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = {getDetailProfile, getPortoById, getExperienceById}
+const mapDispatchToProps = {addUser, getDetailProfile, getPortoById, getExperienceById}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

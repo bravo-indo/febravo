@@ -13,3 +13,8 @@ export const getUserWorker = (token) => async (dispatch) => {
     payload: data.succsess,
   });
 };
+
+export const addUser = (data) => ({
+  type: 'SET_ADD_USER',
+  payload: data,
+});

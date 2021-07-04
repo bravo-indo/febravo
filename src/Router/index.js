@@ -47,7 +47,7 @@ function Routes() {
         <PrivateRoute exact path="/profile/company/edit">
           <EditProfileCompany />
         </PrivateRoute>
-        <PrivateRoute path="/hire">
+        <PrivateRoute path="/hire/:slug">
           <Hire />
         </PrivateRoute>
         <Route exact path="/login">
