@@ -4,19 +4,21 @@ import { useEffect } from "react"
 import { BsSearch } from "react-icons/bs";
 import { connect } from "react-redux"
 
-import { dummyuser1 } from "../assets";
+import { defaultuser, dummyuser1 } from "../assets";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
-import {getProfileData, getPorto, getExperience} from '../redux/actions/profile'
+import {getProfileData, getPorto, getExperience, getPortoById, getExperienceById} from '../redux/actions/profile'
 import {getUserWorker} from '../redux/actions/user'
 
-function Home({profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
+function Home({getPortoById, getExperienceById, profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
   useEffect(() => {
     console.log(auth.token)
     getProfileData(auth.token)
     getPorto(auth.token)
     getExperience(auth.token)
     getUserWorker(auth.token)
+    getPortoById(4, auth.token)
+    getExperienceById(4, auth.token)
   },[profile.data])
 
   return (
@@ -47,7 +49,7 @@ function Home({profile, user, auth, getProfileData, getPorto, getExperience, get
         <div className="rounded-xl bg-white">
         {user.data.map((data) => {
           return <UserCard
-            img={dummyuser1}
+            img={data.images ? data.images : defaultuser}
             name={data.Name_Worker}
             location={data.address}
             role="Web Developer"
@@ -95,5 +97,5 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-const mapDisPatchToProps = {getUserWorker, getProfileData, getPorto, getExperience };
+const mapDisPatchToProps = {getPortoById, getExperienceById, getUserWorker, getProfileData, getPorto, getExperience };
 export default connect(mapStateToProps, mapDisPatchToProps)(Home) ;
