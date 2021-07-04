@@ -85,27 +85,28 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
             </TabList>
             <TabPanel>
               <div className="grid grid-cols-4 pt-10 gap-y-5 gap-x-4">
-                {profile.porto.map((data) => {
-                  return (
+                {profile.porto.map((data) => (
+                  data.id !== null ?
                     <div className="flex flex-col items-center space-y-3" >
                       <img src={data.portofolios} alt="porto" className="w-52 h-36 rounded-md object-cover" />
                       <p className='text-center font-medium pt-2'>{data.project_name}</p>
-                  </div>)
-                })}
+                    </div> : <div className='flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any portfolio</p></div>
+                ))}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="gap-y-5">
-              {profile.experience.map((data) => {
-                return <CardExperience
+              {profile.experience.map((data) => (
+                data.id !== null ?
+                 <CardExperience
                   img={toko}
                   role={data.position}
                   office={data.company_name}
                   date={data.month_years}
                   month={6}
                   desc={data.description}
-                />
-              })}
+                /> : <div className='pt-10 flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any experience</p></div>
+              ))}
               </div>
             </TabPanel>
           </Tabs>
