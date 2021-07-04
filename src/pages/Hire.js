@@ -4,6 +4,9 @@ import { GoLocation } from 'react-icons/go';
 import { dummyuser1 } from '../assets';
 
 function Hire() {
+  
+  
+  
   return (
     <main className="bg-gray-100 px-32 py-10 flex flex-row space-x-20 pb-40">
       <section className="w-80 bg-white px-8 py-8 space-y-4 rounded-lg">
