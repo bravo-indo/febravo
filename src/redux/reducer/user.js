@@ -15,6 +15,11 @@ const user = (state = initialState, action) => {
         ...state,
         user: [...state.user, ...[action.payload]],
       };
+    case 'SET_CLEAR_USER':
+      return {
+        ...state,
+        user: [],
+      };
     default:
       return {
         ...state,

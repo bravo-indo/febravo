@@ -5,6 +5,7 @@ const initialState = {
   forgotPass: '',
   portofolio: '',
   experience: '',
+  history: {},
 };
 
 const message = (state = initialState, action) => {
@@ -48,6 +49,12 @@ const message = (state = initialState, action) => {
       return {
         ...state,
         forgotPass: action.payload,
+      };
+    }
+    case 'GET_HISTORY': {
+      return {
+        ...state,
+        history: action.payload,
       };
     }
     default:
