@@ -24,6 +24,9 @@ const getProfileData = (token) => {
       type: "SET_GET_DETAIL_PROFILE",
       payload: data.results,
     });
+    dispatch({
+      type: "SET_CLEAR_USER",
+    });
   };
 };
 

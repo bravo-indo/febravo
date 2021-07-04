@@ -23,7 +23,6 @@ export const hire = (data, id ,token) => {
     form.append("email_recruiter", data.email);
     form.append("phone_number_recruiter", data.phone);
     form.append("desc_hire", data.desc);
-
     const { data: newData } = await http(token).post(
       `${URL}/user/recruiter/details/${id}`,
       form
@@ -38,6 +37,9 @@ export const hire = (data, id ,token) => {
         icon: 'success',
         title: 'hire successfully'
       })
+    });
+    dispatch({
+      type: "SET_CLEAR_USER",
     });
   }
 }

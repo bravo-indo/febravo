@@ -7,10 +7,11 @@ import { connect } from "react-redux"
 import { defaultuser, dummyuser1 } from "../assets";
 import Button from "../components/Button";
 import UserCard from "../components/UserCard";
+import { getHistory } from "../redux/actions/history"
 import {getProfileData, getPorto, getExperience, getPortoById, getExperienceById} from '../redux/actions/profile'
 import {getUserWorker} from '../redux/actions/user'
 
-function Home({getPortoById, getExperienceById, profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
+function Home({getHistory, getPortoById, getExperienceById, profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
   useEffect(() => {
     console.log(auth.token)
     getProfileData(auth.token)
@@ -19,6 +20,7 @@ function Home({getPortoById, getExperienceById, profile, user, auth, getProfileD
     getUserWorker(auth.token)
     getPortoById(4, auth.token)
     getExperienceById(4, auth.token)
+    getHistory(auth.token)
   },[profile.data])
 
   return (
@@ -97,5 +99,5 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-const mapDisPatchToProps = {getPortoById, getExperienceById, getUserWorker, getProfileData, getPorto, getExperience };
+const mapDisPatchToProps = {getHistory, getPortoById, getExperienceById, getUserWorker, getProfileData, getPorto, getExperience };
 export default connect(mapStateToProps, mapDisPatchToProps)(Home) ;

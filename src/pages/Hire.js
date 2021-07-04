@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { GoLocation } from 'react-icons/go';
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { dummyuser1 } from '../assets';
+import { defaultuser, dummyuser1 } from '../assets';
 import { hire } from '../redux/actions/hire'
 import { getDetailProfile } from '../redux/actions/profile'
 
@@ -37,7 +37,7 @@ function Hire({user, auth, hire}) {
       <section className="w-80 bg-white px-8 py-8 space-y-4 rounded-lg">
         <div className="flex flex-col items-center">
         {user.user.map((data) => {
-          return <img src={data.images} alt="user" className="object-cover rounded-full w-32 h-32" />
+          return <img src={data.images !== null ? data.images : defaultuser} alt="user" className="object-cover rounded-full w-32 h-32" />
         })}
         </div>
         {user.user.map((data) => {
