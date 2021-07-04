@@ -84,15 +84,9 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
               </Tab>
             </TabList>
             <TabPanel>
-<<<<<<< HEAD
               <div className="grid grid-cols-1 lg:grid-cols-4 pt-10 gap-y-5 gap-x-4">
-                {profile.porto.map((data) => {
-                  return (
-=======
-              <div className="grid grid-cols-4 pt-10 gap-y-5 gap-x-4">
                 {profile.porto.map((data) => (
                   data.id !== null ?
->>>>>>> e539d53342a1d25d5a7573c8fe20f3f49230c503
                     <div className="flex flex-col items-center space-y-3" >
                       <img src={data.portofolios} alt="porto" className="w-52 h-36 rounded-md object-cover" />
                       <p className='text-center font-medium pt-2'>{data.project_name}</p>
@@ -119,8 +113,9 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
         </div>
       </div>
     </main>
-  );
+  )
 }
+
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
