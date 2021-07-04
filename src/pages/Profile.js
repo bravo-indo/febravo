@@ -22,7 +22,7 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
     getDetailProfile(id, auth.token)
     getPortoById(id, auth.token)
     getExperienceById(id, auth.token)
-  }, [])
+  }, [id])
 
   return (
     <main className="bg-gray-100 pb-20">
@@ -50,10 +50,10 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
           <p className="text-gray-400 text-sm">
           {profile.dataUser.description}
           </p>
-          {type_users === 'recruiter' &&
+          {/* {type_users === 'recruiter' &&
           <Link to='/hire' className="flex flex-row justify-center bg-purple-800 text-white font-semibold py-3 w-full rounded-md">
             Hire
-          </Link> }
+          </Link> } */}
           <p className="text-xl font-semibold pt-6">Skill</p>
           <ul className="grid grid-cols-3 gap-2">
             <li className="bg-yellow-400 text-white text-center rounded-md">

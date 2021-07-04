@@ -15,10 +15,10 @@ function Hire({auth, getProfileData, profile}) {
 
   const id_recruiter = profile.data.id
   const id_worker = 27
-  const [name, setName] = ""
-  const [email, setEmail] = ""
-  const [phone, setPhone] = ""
-  const [description, setDescription] = ""
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [description, setDescription] = useState("")
 
 
   const formData = (event) => {
