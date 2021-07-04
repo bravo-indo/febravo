@@ -3,6 +3,18 @@ import http from '../../helpers/http';
 import Swal from 'sweetalert2'
 const { REACT_APP_BACKEND_URL: URL } = process.env;
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 const getProfileData = (token) => {
   return async (dispatch) => {
     console.log("token dispa: ", token);
@@ -121,6 +133,13 @@ const addPorto = (data, token) => {
       type: "SET_ADD_PORTO",
       payload: newData,
     });
+    dispatch({
+      type: "SET_ADD_PORTO_SUCCESS",
+      payload: Toast.fire({
+        icon: 'success',
+        title: 'Add portofolios successfully'
+      })
+    });
   }
 }
 
@@ -147,6 +166,14 @@ const addExperience = (data, token) => {
       type: "SET_ADD_EXPERIENCE",
       payload: newData,
     });
+    dispatch({
+      type: "SET_ADD_EXPERIENCE_SUCCESS",
+      payload: Toast.fire({
+        icon: 'success',
+        title: 'Add experience successfully'
+      })
+    });
+
   }
 }
 

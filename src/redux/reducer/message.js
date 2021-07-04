@@ -3,6 +3,8 @@ const initialState = {
   loading: false,
   toLogin: '',
   forgotPass: '',
+  portofolio: '',
+  experience: '',
 };
 
 const message = (state = initialState, action) => {
@@ -11,6 +13,16 @@ const message = (state = initialState, action) => {
       return {
         ...state,
         messageRegister: action.payload,
+      };
+    case 'SET_ADD_PORTO_SUCCESS':
+      return {
+        ...state,
+        portofolio: action.payload,
+      };
+    case 'SET_ADD_EXPERIENCE_SUCCESS':
+      return {
+        ...state,
+        experience: action.payload,
       };
     case 'SET_AUTH_REGISTER_FAILED':
       return {
