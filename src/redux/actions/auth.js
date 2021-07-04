@@ -1,8 +1,8 @@
 /*eslint-disable*/
 import http from '../../helpers/http';
 import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 const { REACT_APP_BACKEND_URL: URL } = process.env;
-
 
 
 const Toast = Swal.mixin({
@@ -169,6 +169,10 @@ const forgotPass = (email) => {
           title: data.message
         })
       });
+      dispatch({
+        type:'SET_EMAIL',
+        payload: email
+      })
     } catch (err) {
       dispatch({
         type: "FORGOT_PASSWORD_FAILED",
