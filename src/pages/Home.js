@@ -61,7 +61,7 @@ function Home({profile, user, auth, getProfileData, getPorto, getExperience, get
             location='Bandung Jawa Barat'
             role="Web Developer"
             skill='PHP'
-            to={`/user/:id`}
+            to={`/user/${user.data.id}`}
           />
         </div>
       </section>
