@@ -177,9 +177,9 @@ const addExperience = (data, token) => {
   }
 }
 
-const getDetailProfile = (id) => {
+const getDetailProfile = (id, token) => {
   return async (dispatch) => {
-    const { data } = await http().get(`${URL}/user/recruiter/details/${id}`);
+    const { data } = await http(token).get(`${URL}/user/recruiter/details/${id}`);
     dispatch({
       type: "SET_GET_DETAIL_USER",
       payload: data.results,
