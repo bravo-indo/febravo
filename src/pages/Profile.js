@@ -4,7 +4,7 @@ import { GoLocation } from "react-icons/go";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FiGithub, FiGitlab } from "react-icons/fi";
-import { defaultuser, dummyuser1, porto1, porto2, porto3, toko } from "../assets";
+import { defaultuser,  toko } from "../assets";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardExperience from "../components/CardExperience";
