@@ -1,12 +1,19 @@
 /*eslint-disable*/
-import React from 'react';
+// import React from 'react';
+import React, { useEffect } from "react";
 import { GoLocation } from 'react-icons/go';
+import { connect } from 'react-redux';
 import { dummyuser1 } from '../assets';
+import {getProfileData} from '../redux/actions/profile'
 
-function Hire() {
-  
-  
-  
+function Hire({auth, getProfileData, profile}) {
+  useEffect(() => {
+    getProfileData(auth.token)
+  }, [])
+  // console.log(profile.data.id)
+
+  const id_recruiter = profile.data.id
+
   return (
     <main className="bg-gray-100 px-32 py-10 flex flex-row space-x-20 pb-40">
       <section className="w-80 bg-white px-8 py-8 space-y-4 rounded-lg">
@@ -107,4 +114,11 @@ function Hire() {
   );
 }
 
-export default Hire;
+const mapStateToProps  = (state) =>({
+  profile: state.profile,
+  auth: state.auth
+})
+
+const mapDisPatchToProps = {getProfileData}
+
+export default connect(mapStateToProps, mapDisPatchToProps)(Hire);

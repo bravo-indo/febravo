@@ -1,6 +1,5 @@
 const initialState = {
-  id_recruiter : 0,
-  
+  data:{}
 }
 
 const hire = (state = initialstate, action) => {
