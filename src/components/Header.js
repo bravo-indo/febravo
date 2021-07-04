@@ -7,19 +7,16 @@ import { authLogout } from '../redux/actions/auth';
 import Button from './Button';
 import {FiMail} from 'react-icons/fi'
 import {IoIosNotificationsOutline} from 'react-icons/io'
-<<<<<<< HEAD
 import {AiOutlineHome} from "react-icons/ai"
 import {RiShutDownLine} from 'react-icons/ri'
 import {VscListFlat} from 'react-icons/vsc'
+import {getProfileData , getPorto, getExperience} from '../redux/actions/profile'
 
 function toggleButton(){
   document.getElementById('nav-toggle').onclick = function(){
     document.getElementById("nav-content").classList.toggle("hidden");
   }
 }
-=======
-import {getProfileData , getPorto, getExperience} from '../redux/actions/profile'
->>>>>>> 7ce6c00233399dc96c6f651dc4482e7f39528170
 
 function Header({ auth, authLogout, profile, getProfileData, getPorto, getExperience  }) {
 
