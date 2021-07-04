@@ -24,7 +24,7 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
   return (
     <main className="bg-gray-100 pb-20">
       <div className="h-80 bg-purple-800 " />
-      <div className="flex flex-row space-x-10 mx-32">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start space-x-10 lg:mx-32">
         <div className="w-80 -mt-64 bg-white px-8 py-8 space-y-4 rounded-lg">
           <div className="flex flex-col items-center">
           {profile.data.images !== null ? <img
@@ -73,18 +73,18 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
             <p className="text-gray-400">@Louistommo91</p>
           </div>
         </div>
-        <div className="bg-white -mt-64 rounded-lg flex-1 ">
+        <div className="bg-white lg:-mt-64 rounded-lg flex-1 ">
           <Tabs className="px-10 py-5">
             <TabList className="flex flex-row space-x-10">
-              <Tab className="border-b-4 border-white cursor-pointer font-semibold text-2xl">
+              <Tab className="border-b-4 border-white cursor-pointer font-semibold text-md lg:text-2xl">
                 Portofolio
               </Tab>
-              <Tab className=" border-b-4 border-white cursor-pointer font-semibold text-2xl">
+              <Tab className=" border-b-4 border-white cursor-pointer font-semibold text-md lg:text-2xl">
                 Pengalaman Kerja
               </Tab>
             </TabList>
             <TabPanel>
-              <div className="grid grid-cols-4 pt-10 gap-y-5 gap-x-4">
+              <div className="grid grid-cols-1 lg:grid-cols-4 pt-10 gap-y-5 gap-x-4">
                 {profile.porto.map((data) => (
                   data.id !== null ?
                     <div className="flex flex-col items-center space-y-3" >
@@ -113,8 +113,9 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
         </div>
       </div>
     </main>
-  );
+  )
 }
+
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
