@@ -86,20 +86,20 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
           </ul>
           <div className="flex flex-row items-center space-x-3 pt-8">
             <AiOutlineMail size={25} color="gray" />
-            <p className="text-gray-400">Louistommo@gmail.com</p>
+            <p className="text-gray-400">{profile.dataUser.email}</p>
           </div>
-          <div className="flex flex-row items-center space-x-3">
+          {profile.dataUser.instagram !== null ? <div className="flex flex-row items-center space-x-3">
             <FaInstagram size={25} color="gray" />
-            <p className="text-gray-400">@Louist91</p>
-          </div>
-          <div className="flex flex-row items-center space-x-3">
+            <p className="text-gray-400">{profile.dataUser.instagram}</p>
+          </div> : <></>}
+          {profile.dataUser.github !== null ? <div className="flex flex-row items-center space-x-3">
             <FiGithub size={25} color="gray" />
-            <p className="text-gray-400">@Louistommo</p>
-          </div>
-          <div className="flex flex-row items-center space-x-3 pb-10">
+            <p className="text-gray-400">{profile.dataUser.github}</p>
+          </div> : <></>}
+          {profile.dataUser.gitlab !== null ? <div className="flex flex-row items-center space-x-3">
             <FiGitlab size={25} color="gray" />
-            <p className="text-gray-400">@Louistommo91</p>
-          </div>
+            <p className="text-gray-400">{profile.dataUser.gitlab}</p>
+          </div> : <></>}
         </div>
         <div className="bg-white -mt-64 rounded-lg flex-1 ">
           <Tabs className="px-10 py-5">
@@ -118,7 +118,7 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
                     <div className="flex flex-col items-center space-y-3" >
                       <img src={data.portofolios} alt="porto" className="w-52 h-36 rounded-md object-cover" />
                       <p className='text-center font-medium pt-2'>{data.project_name}</p>
-                    </div> : <div className='flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any portfolio</p></div>
+                    </div> : <div className='flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>don't have any portfolio</p></div>
                 ))}
               </div>
             </TabPanel>
@@ -133,7 +133,7 @@ function Profile({auth, profile, getDetailProfile, getPortoById, getExperienceBy
                   date={data.month_years}
                   month={6}
                   desc={data.description}
-                /> : <div className='pt-10 flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>you don't have any experience</p></div>
+                /> : <div className='pt-10 flex flex-row w-96 font-semibold text-gray-500 text-xl'><p>don't have any experience</p></div>
               ))}
               </div>
             </TabPanel>

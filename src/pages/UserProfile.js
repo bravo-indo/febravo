@@ -60,18 +60,18 @@ function UserProfile({auth, getProfileData, profile, getPorto, getExperience}) {
             <AiOutlineMail size={25} color="gray" />
             <p className="text-gray-400">{profile.data.email}</p>
           </div>
-          <div className="flex flex-row items-center space-x-3">
+          {profile.data.instagram !== null ? <div className="flex flex-row items-center space-x-3">
             <FaInstagram size={25} color="gray" />
-            <p className="text-gray-400">@Louist91</p>
-          </div>
-          <div className="flex flex-row items-center space-x-3">
+            <p className="text-gray-400">{profile.data.instagram}</p>
+          </div> : <></>}
+          {profile.data.github !== null ? <div className="flex flex-row items-center space-x-3">
             <FiGithub size={25} color="gray" />
-            <p className="text-gray-400">@Louistommo</p>
-          </div>
-          <div className="flex flex-row items-center space-x-3 pb-10">
+            <p className="text-gray-400">{profile.data.github}</p>
+          </div> : <></>}
+          {profile.data.gitlab !== null ? <div className="flex flex-row items-center space-x-3">
             <FiGitlab size={25} color="gray" />
-            <p className="text-gray-400">@Louistommo91</p>
-          </div>
+            <p className="text-gray-400">{profile.data.gitlab}</p>
+          </div> : <></>}
         </div>
         <div className="bg-white lg:-mt-64 rounded-lg flex-1 ">
           <Tabs className="px-10 py-5">
