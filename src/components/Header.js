@@ -28,7 +28,9 @@ function Header({ message, auth, authLogout, profile, getProfileData, getPorto, 
   },[])
 
   const onPress = () => {
-    console.log('asd')
+    message.history.map((msg) => {
+      return Swal.fire(`you have been hired by ${msg.name_recruiter} for ${msg.project}`)
+    })
   }
 
   return (

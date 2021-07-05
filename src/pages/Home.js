@@ -10,6 +10,7 @@ import UserCard from "../components/UserCard";
 import { getHistory } from "../redux/actions/history"
 import {getProfileData, getPorto, getExperience, getPortoById, getExperienceById} from '../redux/actions/profile'
 import {getUserWorker} from '../redux/actions/user'
+import Swal from 'sweetalert2'
 
 function Home({getHistory, getPortoById, getExperienceById, profile, user, auth, getProfileData, getPorto, getExperience, getUserWorker}) {
   useEffect(() => {
@@ -22,6 +23,15 @@ function Home({getHistory, getPortoById, getExperienceById, profile, user, auth,
     getExperienceById(4, auth.token)
     getHistory(auth.token)
   },[profile.data])
+
+  const loadMore = () => {
+    const { nextPage } = user.pagination;
+    if (nextPage !== null) {
+      getUserWorker(nextPage);
+    } else {
+      Swal.fire('no more users')
+    }
+  };
 
   return (
     <main>
@@ -63,30 +73,11 @@ function Home({getHistory, getPortoById, getExperienceById, profile, user, auth,
       </section>
       <section className="bg-gray-100 py-20">
         <div className="flex flex-row justify-center items-center space-x-4">
-          <button className="bg-white p-5 text-gray-400 font-semibold ">
-            {"<"}
+        {user.data &&
+        <button onClick={loadMore} className="bg-white p-5 text-gray-400 font-semibold ">
+            {"Next"}
           </button>
-          <button className="bg-white p-5 text-gray-400 font-semibold ">
-            1
-          </button>
-          <button className="hidden md:inline-block bg-white p-5 text-gray-400 font-semibold ">
-            2
-          </button>
-          <button className="hidden md:inline-block bg-white p-5 text-gray-400 font-semibold ">
-            3
-          </button>
-          <button className="hidden lg:inline-block bg-white p-5 text-gray-400 font-semibold ">
-            4
-          </button>
-          <button className="hidden lg:inline-block bg-white p-5 text-gray-400 font-semibold ">
-            5
-          </button>
-          <button className="hidden lg:inline-block bg-white p-5 text-gray-400 font-semibold ">
-            6
-          </button>
-          <button className="bg-white p-5 text-gray-400 font-semibold ">
-            {">"}
-          </button>
+        }
         </div>
       </section>
     </main>
