@@ -3,13 +3,13 @@ import React from 'react';
 import { useState } from 'react'
 import { GoLocation } from 'react-icons/go';
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { defaultuser, dummyuser1 } from '../assets';
 import { hire } from '../redux/actions/hire'
 import { getDetailProfile } from '../redux/actions/profile'
 
 function Hire({user, auth, hire}) {
-
+  let history = useHistory()
   const [purpose, setPurpose] = useState("projek")
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -30,6 +30,7 @@ function Hire({user, auth, hire}) {
     e.preventDefault()
     console.log(form)
     hire(form, slug, auth.token)
+    history.push('/home')
   }
 
   return (
