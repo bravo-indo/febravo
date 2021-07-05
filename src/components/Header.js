@@ -32,7 +32,7 @@ function Header({ message, auth, authLogout, profile, getProfileData, getPorto, 
   }
 
   return (
-    <nav className="container mx-auto flex flex-row justify-between items-center px-5 lg:px-32 py-5 sticky top-0 bg-white">
+    <nav className="container mx-auto flex flex-row justify-between items-center px-5 py-5 sticky top-0 bg-white">
       <Link to="/">
         <img src={Logo} alt="logo" />
       </Link>
@@ -55,7 +55,7 @@ function Header({ message, auth, authLogout, profile, getProfileData, getPorto, 
             className="w-8 h-8 rounded-full bg-white object-cover"
           />}
           </Link>
-          <Button label='Logout' onClick={authLogout}/>
+          <button label='Logout' onClick={authLogout}><RiShutDownLine size={24} color='#990000' /></button>
         </div>
         </div>
       ) : (
